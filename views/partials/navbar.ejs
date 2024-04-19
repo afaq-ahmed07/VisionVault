@@ -13,17 +13,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-5">
+                    <ul class="navbar-nav justify-content-end flex-grow-1">
                         <li class="nav-item pe-3">
+                            <form class="d-flex pb-1  search-bar-form" role="search">
+                                <img class="search-icon" src="/img/search.svg" alt="">
+                                <input class="form-control search-bar" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                            </form>
+                        </li>
+                        <li class="nav-item nav-pages pe-4">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
-                        <li class="nav-item pe-3">
-                            <a class="nav-link active" aria-current="page" href="#">About Us</a>
+                        <li class="nav-item nav-pages pe-4">
+                            <a class="nav-link" aria-current="page" href="#">About</a>
                         </li>
-                        <li class="nav-item pe-3">
-                            <a class="nav-link active" aria-current="page" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item dropdown pe-3">
+                        <li class="nav-item nav-pages dropdown pe-4">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Explore
@@ -36,6 +41,10 @@
                                 </li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item pe-4 d-flex log-sign-li">
+                            <button class="login" role="button">Login</button>
+                            <button class="signup" role="button">Sign Up</button>
                         </li>
                     </ul>
                 </div>
