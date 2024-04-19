@@ -1,40 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
-*{
-    font-family: 'Poppins',sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.navbar-brand{
-    font-weight: 600;
+.navbar-brand {
+  font-weight: 600;
 }
-.nav-item{
-    font-weight: 600;
-    transition: hover 2s;
+.nav-item {
+  font-weight: 600;
+  font-size: 1.1rem;
 }
-.nav-item:hover{
-    border-bottom: 2px solid black;
+.nav-pages:hover {
+  border-bottom: 2px solid black;
 }
-.search-bar{
-    border-radius: 25px;
-    height: 3rem;
+.search-bar-form {
+  margin-right: 2rem;
 }
-.search-bar::placeholder{
-    font-weight: 500;
-    font-size: 1.2rem;
-    padding-left: 2rem;
+.login,.signup{
+  align-items: center;
+  border-radius: 100px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  text-align: center;
+  font-weight: 1rem;
 }
-.search-icon{
-    position: relative;
-    left: 2rem;
+.login{
+    padding-left: 27px;
+    padding-right: 27px;
+    background-color: #e8edf1;
+    color: #0a66c2;
+    border: 1px solid #ffffff;
+    margin-right: 0.5rem;
 }
-.carousel-indicators{
-    width: fit-content;
-    position: relative;
-    top: 29rem;
-    left: -3rem;
+.signup{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #0a66c2;
+    color: #ffffff;
+    border: 0;
 }
-.carousel-item img{
-    width: 450px;
+.login:hover,.signup:hover{
+  box-shadow: rgba(94, 94, 105, 0.2) 0px 7px 29px 0px;
+  border:0;
+}
+.search-bar {
+  border-radius: 25px;
+  height: 3rem;
+  width: 20rem;
+}
+.search-bar::placeholder {
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding-left: 2rem;
+}
+.search-icon {
+  position: relative;
+  left: 2rem;
+}
+.carousel-indicators {
+  width: fit-content;
+  position: relative;
+  top: 29rem;
+  left: -3rem;
+}
+.carousel-item img {
+  width: 450px;
+  height: auto;
+}
+.carousel-sibling{
+    width: 500px;
     height: auto;
+}
+.card{
+    flex-basis: 30%;
+}
+.like-svg{
+    margin-left: 10rem;
+}
+@media (max-width: 992px) {
+  .log-sign-li{
+    padding-top: 1rem;
+  }
+  .login{
+    margin-right: 1rem;
+  }
+  .search-bar{
+    width: 35rem;
+  }
+  
 }
