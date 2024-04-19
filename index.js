@@ -16,11 +16,30 @@ app.set('view engine', 'ejs');
 
 // Use the signinRouter for the /signin route
 app.use('/signin', signinRouter);
+const cards = [
+    {
+        title: "Card 1",
+        src: "/img/watchtower.jpg",
+    },
+    {
+        title: "Card 2",
+        src: "/img/watchtower.jpg",
+    },
+    {
+        title: "Card 2",
+        src: "/img/watchtower.jpg",
+    },
+    {
+        title: "Card 2",
+        src: "/img/watchtower.jpg",
+    },
+    // Add more card objects as needed...
+];
 
 // Route handler for the home page
 app.get('/', (req, res) => {
     const pageTitle = 'Home';
-    res.render('index', { pageTitle });
+    res.render('index', { pageTitle, cards });
 });
 
 // Start the server
