@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const signinRouter = require('./routes/signin');
+const homeRouter= require('./routes/home')
 
 const app = express();
 
@@ -16,32 +17,7 @@ app.set('view engine', 'ejs');
 
 // Use the signinRouter for the /signin route
 app.use('/signin', signinRouter);
-const cards = [
-    {
-        title: "Card 1",
-        src: "/img/watchtower.jpg",
-    },
-    {
-        title: "Card 2",
-        src: "/img/watchtower.jpg",
-    },
-    {
-        title: "Card 2",
-        src: "/img/watchtower.jpg",
-    },
-    {
-        title: "Card 2",
-        src: "/img/watchtower.jpg",
-    },
-    // Add more card objects as needed...
-];
-
-// Route handler for the home page
-app.get('/', (req, res) => {
-    const pageTitle = 'Home';
-    res.render('index', { pageTitle, cards });
-});
-
+app.use('/', homeRouter);
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

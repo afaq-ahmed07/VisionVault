@@ -5,8 +5,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+.header{
+  padding-bottom: 3rem;
+}
+.navbar{
+  background-color: white;
+  padding-top: 1rem;
+}
 .navbar-brand {
   font-weight: 600;
+  font-size: 1.3rem;
 }
 .nav-item {
   font-weight: 600;
@@ -24,12 +32,10 @@
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
-  max-width: 480px;
-  min-height: 40px;
-  min-width: 0px;
+  width: 6.8rem;
+  height: 3rem;
   overflow: hidden;
   text-align: center;
-  font-weight: 1rem;
 }
 .login{
     padding-left: 27px;
@@ -64,25 +70,82 @@
   position: relative;
   left: 2rem;
 }
+.carousel{
+  margin-left: 1rem;
+  border: 2px solid black;
+}
 .carousel-indicators {
-  width: fit-content;
   position: relative;
   top: 29rem;
-  left: -3rem;
 }
 .carousel-item img {
   width: 450px;
   height: auto;
 }
 .carousel-sibling{
-    width: 500px;
+    width: 450px;
     height: auto;
 }
-.card{
-    flex-basis: 30%;
+.project-head{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
 }
-.like-svg{
-    margin-left: 10rem;
+.project-count{
+  font-size: small;
+  font-weight: 600;
+}
+.hr-project{
+  width: 1250px;
+  margin-left: 1.6rem;
+}
+.card{
+  border: 0;
+}
+.card-body{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.card-info{
+  flex-basis: 70%;
+}
+.card-stats{
+  flex-basis: 30%;
+}
+.card-stats{
+  text-align: end;
+}
+.card-body p{
+  font-size: 1rem;
+}
+.card-img{
+  border-radius: 6px;
+}
+footer{
+  background-color: #040c10;
+}
+footer h5,h3{
+  color: white;
+}
+footer li{
+  list-style-type: none;
+  color: rgba(245, 245, 245, 0.877);
+  padding-bottom: 0.8rem;
+}
+footer li a{
+  text-decoration: none;
+  color: rgba(245, 245, 245, 0.877);
+}
+.footer-sec{
+  color: rgba(245, 245, 245, 0.877);
+}
+.footer-hr{
+  color: rgba(245, 245, 245, 0.877);
+}
+.footer-brand{
+  font-weight: 600;
 }
 @media (max-width: 992px) {
   .log-sign-li{
@@ -91,8 +154,22 @@
   .login{
     margin-right: 1rem;
   }
+  .search-bar-form{
+    width: 100%;
+  }
+  .search-icon{
+    position: relative;
+    left: 0.8rem;
+    z-index: 1;
+  }
   .search-bar{
-    width: 35rem;
+    width: 20rem;
+    position: relative;
+    left: -1rem;
+    z-index: -1;
+  }
+  .carousel-sib-div{
+    display: none;
   }
   
 }

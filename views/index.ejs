@@ -15,61 +15,60 @@
 <body>
     <%- include('partials/navbar')%>
         <div class="row">
-            <div class="col-lg-7 bg-primary">
-                <div id="carouselExampleAutoplaying" class="carousel slide " data-bs-ride="carousel">
+            <div class="col-lg-7 col-md-12">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
+                        <% carousel.forEach((item, index) => { %>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<%= index %>"
+                                class="<%= index === 0 ? 'active bg-dark' : 'bg-dark' %>"
+                                aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                aria-label="Slide <%= index + 1 %>"></button>
+                        <% }); %>
+                    </div>                    
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="/img/boy.png" class="d-block" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/boy.png" class="d-block" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/boy.png" class="d-block" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="prev">
-                        <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span> -->
-                    </button>
-                    <button class="carousel-control-next" type="button"
-                        data-bs-target="#carouselExampleAutoplaying #carouselExampleCaptions" data-bs-slide="next">
-                        <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span> -->
-                    </button>
+                        <% carousel.forEach((item, index) => { %>
+                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                <img src="<%= item.src %>" class="d-block" alt="...">
+                            </div>
+                        <% }); %>
+                    </div>                    
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="row">
-                    <img src="/img/watchtower.jpg" class="d-block carousel-sibling" alt="...">
-                </div>
-                <div class="row">
-                    <img src="/img/watchtower.jpg" class="d-block carousel-sibling" alt="...">
-                </div>
+            <div class="col-lg-5 carousel-sib-div">
+                <% carousel_sib.forEach(item => { %>
+                    <div class="row pb-3">
+                        <img src="<%= item.src %>" class="d-block carousel-sibling" alt="...">
+                    </div>
+                <% }) %>
             </div>
         </div>
-        <div class="mt-3 gap-3 d-flex flex-wrap justify-content-center">
-            <% cards.forEach(card => { %>
-                <div class="card w-50">
-                    <img src="<%= card.src %>" class="card-img-top" alt="...">
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                <h1 class="project-head">Projects <span class="project-count">(<%= cards.length %>)</span></h1>
+                <hr class="hr-project">
+            </div>
+        </div>
+        <div class="row m-2 d-flex">
+            <% cards.forEach(card=> { %>
+                <div class="card col-lg-4 col-md-6">
+                    <img src="<%= card.src %>" class="card-img-top card-img" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><%= card.title %>
-                            <span><img class="like-svg" src="/img/like.svg" alt=""></span>
-                        </h5>
-
+                        <div class="card-info">
+                            <h5 class="card-title">
+                                <%= card.title %>
+                            </h5>
+                            <p>
+                                <%= card.author %>
+                            </p>
+                        </div>
+                        <div class="card-stats">
+                            <span class="like-span"><img class="like-svg" src="/img/like.svg" alt=""> <%= formatLikes(card.likes) %></span>
+                        </div>
                     </div>
                 </div>
-            <% }) %>
+                <% }) %>
         </div>
+        <%- include('partials/footer')%>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
