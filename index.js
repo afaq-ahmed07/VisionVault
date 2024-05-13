@@ -7,22 +7,12 @@ const mongoose = require("mongoose");
 const User = require('./models/user');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-
-
 const app = express();
-
-
-
-// Set the views directory
+const homeRouter= require('./routes/home')
 app.set('views', path.join(__dirname, 'views'));
 
-
-// Serve static files from the public directory
-app.use(express.static('public'));
-
-// Set EJS as the view engine
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
-
 // Middleware to parse form data
 app.use(bodyParser.json());
 
@@ -30,8 +20,6 @@ app.use(bodyParser.json());
 app.use('/signin', signinRouter);
 
 app.use('/signup',signupRouter);
-
-
 const cards = [
     {
         title: "Card 1",
@@ -51,14 +39,8 @@ const cards = [
     },
     // Add more card objects as needed...
 ];
+app.use('/', homeRouter);
 
-// Route handler for the home page
-app.get('/', (req, res) => {
-    const pageTitle = 'Home';
-    res.render('index', { pageTitle, cards });
-});
-
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

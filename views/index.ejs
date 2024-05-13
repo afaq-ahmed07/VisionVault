@@ -15,64 +15,131 @@
 <body>
     <%- include('partials/navbar')%>
         <div class="row">
-            <div class="col-lg-7 bg-primary">
-                <div id="carouselExampleAutoplaying" class="carousel slide " data-bs-ride="carousel">
+            <div class="col-lg-7 col-md-12">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
+                        <% carousel.forEach((item, index)=> { %>
+                            <button type="button" data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide-to="<%= index %>"
+                                class="<%= index === 0 ? 'active bg-dark' : 'bg-dark' %>"
+                                aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                aria-label="Slide <%= index + 1 %>"></button>
+                            <% }); %>
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="/img/boy.png" class="d-block" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/boy.png" class="d-block" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/boy.png" class="d-block" alt="...">
-                        </div>
+                        <% carousel.forEach((item, index)=> { %>
+                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                <img src="<%= item.src %>" class="d-block img-fluid" alt="...">
+                            </div>
+                            <% }); %>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="prev">
-                        <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span> -->
-                    </button>
-                    <button class="carousel-control-next" type="button"
-                        data-bs-target="#carouselExampleAutoplaying #carouselExampleCaptions" data-bs-slide="next">
-                        <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span> -->
-                    </button>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="row">
-                    <img src="/img/watchtower.jpg" class="d-block carousel-sibling" alt="...">
-                </div>
-                <div class="row">
-                    <img src="/img/watchtower.jpg" class="d-block carousel-sibling" alt="...">
+            <div class="col-lg-5 carousel-sib-div">
+                <% carousel_sib.forEach(item=> { %>
+                    <div class="row pb-3">
+                        <img src="<%= item.src %>" class="d-block carousel-sibling img-fluid" alt="...">
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+        <div class="row mt-3 pb-3">
+            <div class="col-lg-10 col-md-">
+                <h1 class="project-head">Projects <span class="project-count">(<%= cards.length %>)</span>
+                </h1>
+            </div>
+            <div class="col-lg-2 d-flex">
+                <button type="button" class="btn btn-primary align-self-end" id="add-button" data-bs-toggle="modal"
+                    data-bs-target="#project-modal"><img class="me-1" src="/img/add.svg" alt="">Add Project</button>
+            </div>
+            <!-- <hr class="hr-project mt-2"> -->
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="project-modal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="projectModalLabel">Add Project</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="project-info">
+                            <div class="mb-3">
+                                <label for="project-title-field" class="form-label">Project Title</label>
+                                <input type="text" class="form-control" id="project-title-field" required>
+                              </div>
+                              <div class="mb-3">
+                                <label for="project-desc-field" class="form-label">Project Description</label>
+                                <textarea class="form-control" id="project-desc-field" rows="3"></textarea>
+                              </div>
+                        </div>
+                        <!--FIle Uploading-->
+                        <div class="file-upload d-flex align-content-center justify-content-center flex-column">
+                            <h1>Uplaod Your Attachment</h1>
+                            <div class="wrapper">
+                                <form action="#">
+                                    <img src="/img/cloud-upload.svg" alt="">
+                                    <p>Browse File to Upload</p>
+                                </form>
+                            </div>
+                            <section class="progress-area">
+                                <li class="row d-flex align-items-center justify-content-between">
+                                    <!-- <img src="/img/file.svg" alt="File.svg"> -->
+                                    <div class="content">
+                                        <div class="details">
+                                            <span class="name">image.png . Uploading</span>
+                                            <span class="percent">50%</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </section>
+                            <section class="upload-area">
+                                <li class="row d-flex align-items-center justify-content-between">
+                                    <div class="content">
+                                        <!-- <img src="/img/file.svg" alt="File.svg"> -->
+                                        <div class="details">
+                                            <span class="name">image.png . Uploaded</span>
+                                            <span class="size">70 Kb</span>
+                                        </div>
+                                    </div>
+                                    <img src="" alt="check.svg">
+                                </li>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="mt-3 gap-3 d-flex flex-wrap justify-content-center">
-            <% cards.forEach(card => { %>
-                <div class="card w-50">
-                    <img src="<%= card.src %>" class="card-img-top" alt="...">
+        <div class="row m-2 d-flex">
+            <% cards.forEach(card=> { %>
+                <div class="card col-lg-4 col-md-6">
+                    <img src="<%= card.src %>" class="card-img-top card-img" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><%= card.title %>
-                            <span><img class="like-svg" src="/img/like.svg" alt=""></span>
-                        </h5>
-
+                        <div class="card-info">
+                            <h5 class="card-title">
+                                <%= card.title %>
+                            </h5>
+                            <p>
+                                <%= card.author %>
+                            </p>
+                        </div>
+                        <div class="card-stats">
+                            <span class="like-span"><img class="like-svg" src="/img/like.svg" alt="">
+                                <%= formatLikes(card.likes) %>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            <% }) %>
+                <% }) %>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+        <%- include('partials/footer')%>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
 </body>
 
 </html>
