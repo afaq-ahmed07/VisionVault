@@ -5,20 +5,13 @@ const homeRouter= require('./routes/home')
 
 const app = express();
 
-// Set the views directory
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Serve static files from the public directory
 app.use(express.static('public'));
-
-// Set EJS as the view engine
 app.set('view engine', 'ejs');
-
-// Use the signinRouter for the /signin route
 app.use('/signin', signinRouter);
 app.use('/', homeRouter);
-// Start the server
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

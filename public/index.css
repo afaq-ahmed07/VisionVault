@@ -60,6 +60,7 @@
   border-radius: 25px;
   height: 3rem;
   width: 20rem;
+  padding-left: 10px;
 }
 .search-bar::placeholder {
   font-weight: 600;
@@ -73,12 +74,20 @@
 .carousel{
   margin-left: 1rem;
   border: 2px solid black;
+  width: 750px;
+  height: 495px;
+  object-fit: cover;
 }
 .carousel-indicators {
   position: relative;
   top: 29rem;
 }
-.carousel-item img {
+.carousel-innner{
+  width: 750px;
+  height: 495px;
+  object-fit: cover;
+}
+.carousel-item img{
   width: 450px;
   height: auto;
 }
@@ -96,9 +105,30 @@
   font-size: small;
   font-weight: 600;
 }
-.hr-project{
+/* .hr-project{
   width: 1250px;
   margin-left: 1.6rem;
+} */
+.wrapper form{
+  height: 167px;
+  margin: 30px 0;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px dashed #6990f2;
+}
+form p{
+  color: #6990f2;
+  font-size: 16px;
+}
+section .row{
+   background: #e9f0ff;
+   margin-bottom: 10px;
+   list-style: none;
+   padding: 15px 20px;
+   border-radius: 5px;
 }
 .card{
   border: 0;

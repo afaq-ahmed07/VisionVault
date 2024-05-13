@@ -41,7 +41,7 @@ const cards = [
 ];
 const carousel = [
     {
-        src: "/img/boy.png",
+        src: "/img/interior.jpg",
     },
     {
         src: "/img/boy.png",
