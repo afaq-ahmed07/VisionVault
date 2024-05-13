@@ -77,18 +77,23 @@
                         <div class="file-upload d-flex align-content-center justify-content-center flex-column">
                             <h1>Uplaod Your Attachment</h1>
                             <div class="wrapper">
-                                <form action="#">
+                                <form action="/upload" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="projectImage" id="" class="file-input">
+                                    <button type="submit">Upload</button>
                                     <img src="/img/cloud-upload.svg" alt="">
                                     <p>Browse File to Upload</p>
                                 </form>
                             </div>
                             <section class="progress-area">
                                 <li class="row d-flex align-items-center justify-content-between">
-                                    <!-- <img src="/img/file.svg" alt="File.svg"> -->
                                     <div class="content">
+                                        <img class="fa-file" src="/img/file.svg" alt="File.svg">
                                         <div class="details">
                                             <span class="name">image.png . Uploading</span>
                                             <span class="percent">50%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress"></div>
                                         </div>
                                     </div>
                                 </li>
@@ -96,13 +101,13 @@
                             <section class="upload-area">
                                 <li class="row d-flex align-items-center justify-content-between">
                                     <div class="content">
-                                        <!-- <img src="/img/file.svg" alt="File.svg"> -->
+                                        <img class="fa-file" src="/img/file.svg" alt="File.svg">
                                         <div class="details">
                                             <span class="name">image.png . Uploaded</span>
                                             <span class="size">70 Kb</span>
+                                            <img class="fa-check" src="" alt="check.svg">
                                         </div>
                                     </div>
-                                    <img src="" alt="check.svg">
                                 </li>
                             </section>
                         </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const multer  = require('multer')
 const path = require('path'); // Import the path module
 const cards = [
     {
@@ -70,6 +71,23 @@ function formatLikes(likes) {
         return likes; // Return as-is for values below 1000
     }
 }
+
+// File Uploading
+const storage=multer.diskStorage({
+    destination: function (req,file,cb){
+        return cb(null,"./uploads");
+    },
+    filename: function (req,file,cb){
+        return cb(null,`${Date.now()}-${file.originalname}`);
+    }
+});
+const upload=multer({storage});
+
+// Middleware
+router.use(express.urlencoded({extended: false}))
+router.post("/upload",upload.single("projectImage"),(req,res)=>{
+    res.send("File Uploaded")
+})
 // Route handler for the home page
 router.get('/', (req, res) => {
     const pageTitle = 'Home';

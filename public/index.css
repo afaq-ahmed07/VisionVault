@@ -60,12 +60,12 @@
   border-radius: 25px;
   height: 3rem;
   width: 20rem;
-  padding-left: 10px;
+  padding-left: 50px;
 }
 .search-bar::placeholder {
   font-weight: 600;
   font-size: 1.2rem;
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
 }
 .search-icon {
   position: relative;
@@ -114,6 +114,7 @@
   margin: 30px 0;
   border-radius: 5px;
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -123,12 +124,70 @@ form p{
   color: #6990f2;
   font-size: 16px;
 }
+.progress-area{
+  width: 100%;
+}
 section .row{
    background: #e9f0ff;
    margin-bottom: 10px;
    list-style: none;
    padding: 15px 20px;
    border-radius: 5px;
+}
+
+section .row .fa-file{
+  color: #6990f2;
+}
+section .row .details span{
+  font-size: 14px;
+}
+.progress-area .row .content{
+  width: 100%;
+  margin-left: 15px;
+  
+}
+.progress-area .details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+.progress-area .progress-bar{
+  height: 6px;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 4px;
+  border-radius: 30px;
+}
+.progress-bar .progress{
+  height: 100%;
+  width: 50%;
+  background: #6990f2;
+  border-radius: inherit;
+}
+.uploaded-area{
+  max-height: 150px;
+  overflow-y: scroll;
+}
+.uploaded-area::-webkit-scrollbar{
+  width: 0px;
+}
+.uploaded-area .row .content{
+  display: flex;
+  align-items: center;
+}
+.uploaded-area .row .details{
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+}
+.uploaded-area .details .size{
+  font-size: 11px;
+  color: #404040;
+}
+.uploaded-area .fa-check{
+  color: #6990f2;
+  font-size: 16px;
 }
 .card{
   border: 0;
