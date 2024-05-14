@@ -1,4 +1,6 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const path = require('path');
 const router = express.Router();
 const signinRouter = require('./routes/signin');
@@ -13,6 +15,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
+
+//app.use(express.json()); // For parsing application/json
 // Middleware to parse form data
 app.use(bodyParser.json());
 
@@ -51,51 +55,54 @@ app.listen(PORT, () => {
 
 require("./config/connect");
 
-// Middleware to parse JSON bodies
-//app.use(express.json());
-// Configure multer for handling multipart/form-data
-//const upload = multer();
+app.post("/signup", async (req, res) => {
+    const { username, email , password } = req.body;
 
+    try {
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Create a new user with the hashed password
+        const newUser = new User({ username, email, password: hashedPassword });
 
+        // Save the user to the database
+        await newUser.save();
 
-
-
-
-// Route for handling POST requests
-app.post("/signup", (req, res) => {
-    if (Object.keys(req.body).length === 0){
-        console.log("error");
+        res.status(201).send('User created successfully');
+    } catch (error) {
+        console.error('Error during signup:', error);
+        res.status(500).send('Internal Server Error');
     }
-    else{
-    console.log("Request Body:", req.body);
-    const u = req.body.username;
-    const p = req.body.password;
-    const e = req.body.email;
-
-    //adding new user to database
-    const newUser = new User({
-    username:u ,
-    email: e,
-    password: p
-    });
-  
-  newUser.save()
-    .then(() => {
-      console.log('Saved successfully.');
-    })
-    .catch((err) => {
-      console.error('Error occurred:', err);
-    });
-
-    res.status(200).send('OK');
-   
-    }
-    
 });
 
-//
-app.post("/signin", (req, res) => {
-    console.log("Request Body:", req.body);
-    res.status(200).send('OK');
+app.post("/signin", async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // Find the user by username
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            console.log("hi")
+            return res.status(401).send('Invalid username or password');
+        }
+
+        // Compare the provided password with the stored hashed password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            return res.status(401).send('Invalid username or password');
+        }
+
+        // Generate a JWT
+        const token = jwt.sign({ username: user.username,email:user.email }, 'Nevergiveup', { expiresIn: '1h' });
+
+        // Send the JWT in an HTTP-only cookie
+        res.cookie('authToken', token, { httpOnly: true, secure: true, maxAge: 3600000 }); // 1 hour
+        res.status(200).send('Sign-in successful');
+
+    } catch (error) {
+        console.error('Error during sign-in:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
