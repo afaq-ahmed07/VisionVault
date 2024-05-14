@@ -123,11 +123,9 @@
 form p{
   color: #6990f2;
   font-size: 16px;
+  user-select: none;
 }
-.progress-area{
-  width: 100%;
-}
-section .row{
+section .file-li{
    background: #e9f0ff;
    margin-bottom: 10px;
    list-style: none;
@@ -135,57 +133,26 @@ section .row{
    border-radius: 5px;
 }
 
-section .row .fa-file{
+section .file-li .fa-file{
   color: #6990f2;
 }
-section .row .details span{
+section .file-li .details span{
   font-size: 14px;
 }
-.progress-area .row .content{
-  width: 100%;
-  margin-left: 15px;
-  
-}
-.progress-area .details{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 7px;
-}
-.progress-area .progress-bar{
-  height: 6px;
-  width: 100%;
-  background: #fff;
-  margin-bottom: 4px;
-  border-radius: 30px;
-}
-.progress-bar .progress{
-  height: 100%;
-  width: 50%;
-  background: #6990f2;
-  border-radius: inherit;
-}
-.uploaded-area{
-  max-height: 150px;
-  overflow-y: scroll;
-}
-.uploaded-area::-webkit-scrollbar{
-  width: 0px;
-}
-.uploaded-area .row .content{
+.upload-area .file-li .content{
   display: flex;
   align-items: center;
 }
-.uploaded-area .row .details{
+.upload-area .file-li .details{
   display: flex;
   margin-left: 15px;
   flex-direction: column;
 }
-.uploaded-area .details .size{
+.upload-area .details .size{
   font-size: 11px;
   color: #404040;
 }
-.uploaded-area .fa-check{
+.upload-area .fa-check{
   color: #6990f2;
   font-size: 16px;
 }
