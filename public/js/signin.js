@@ -1,3 +1,31 @@
+function validateForm(formObject) {
+    // Check if any field is empty
+    for (const [key, value] of Object.entries(formObject)) {
+        if (!value) {
+            alert(`${key} cannot be empty`);
+            return false;
+        }
+    }
+
+    // Check username length and character requirements
+    const usernamePattern = /^[A-Za-z]{4,}$/;
+    if (!usernamePattern.test(formObject.username)) {
+        alert('wrong username or password');
+        return false;
+    }
+
+   
+    // Check password strength
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+    if (!passwordPattern.test(formObject.password)) {
+        alert('wrong username or password');
+        return false;
+    }
+
+    return true;
+}
+ 
+
 async function signinFORM(event) {
     event.preventDefault();
 
@@ -7,6 +35,10 @@ async function signinFORM(event) {
     };
     console.log(formObject.username)
     
+    if (!validateForm(formObject)) {
+        return; // Stop submission if validation fails
+    }
+
     try {
         const response = await fetch('/signin', {
             method: 'POST',
@@ -22,7 +54,7 @@ async function signinFORM(event) {
         window.location.href = '/'; 
     } catch (error) {
     console.error('Error:', error);
-    alert('An error occurred while signing in: ' + error.message);
+    alert('wrong credentials');
 }
 
 }
