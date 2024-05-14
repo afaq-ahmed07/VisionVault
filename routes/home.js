@@ -1,45 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const multer  = require('multer')
-const path = require('path'); // Import the path module
-const cards = [
-    {
-        title: "Portfolio | Graphic Designer",
-        src: "/img/watchtower.jpg",
-        author: "Afaq Ahmed",
-        likes: 1000,
-    },
-    {
-        title: "Illustration Portfolio",
-        src: "/img/watchtower.jpg",
-        author: "Afaq Ahmed",
-        likes: 20000,
-    },
-    {
-        title: "American Standard Horizon Faucet",
-        src: "/img/watchtower.jpg",
-        author: "Afaq Ahmed",
-        likes: 300000,
-    },
-    {
-        title: "Portfolio | Graphic Designer",
-        src: "/img/watchtower.jpg",
-        author: "Afaq Ahmed",
-        likes: 4000000,
-    },
-    {
-        title: "Portfolio | Graphic Designer",
-        src: "/img/watchtower.jpg",
-        author: "Afaq Ahmed",
-        likes: 4000000,
-    },
-    {
-        title: "Portfolio | Graphic Designer",
-        src: "/img/watchtower.jpg",
-        author: "Afaq Ahmed",
-        likes: 4000000,
-    },
-];
+const Project = require('../models/projects');
+const projectController = require('../controllers/project-add');
 const carousel = [
     {
         src: "/img/interior.jpg",
@@ -62,6 +24,11 @@ const carousel_sib = [
         src: "/img/watchtower.jpg",
     },
 ];
+router.use(express.json());
+router.use(express.urlencoded({ extended: false }));
+
+router.use('/projects', projectController);
+
 function formatLikes(likes) {
     if (likes >= 1000 && likes < 1000000) {
         return (likes / 1000).toFixed(1) + 'K'; // Convert to K format
@@ -72,26 +39,20 @@ function formatLikes(likes) {
     }
 }
 
-// File Uploading
-const storage=multer.diskStorage({
-    destination: function (req,file,cb){
-        return cb(null,"./uploads");
-    },
-    filename: function (req,file,cb){
-        return cb(null,`${Date.now()}-${file.originalname}`);
-    }
-});
-const upload=multer({storage});
-
-// Middleware
-router.use(express.urlencoded({extended: false}))
-router.post("/upload",upload.single("projectImage"),(req,res)=>{
-    res.send("File Uploaded")
-})
 // Route handler for the home page
-router.get('/', (req, res) => {
-    const pageTitle = 'Home';
-    res.render('index', { pageTitle, cards,carousel,carousel_sib,formatLikes });
+router.get('/', async (req, res) => {
+    try {
+        const projects = await Project.find();
+        // Sort the projects by likes in descending order
+        projects.sort((a, b) => b.likes - a.likes);
+        const topProject = projects[0];
+        // Select the second and third projects
+        const sec_third_project = projects.slice(1, 3);
+        res.render('index', { pageTitle: 'Home', cards: projects,carousel:topProject,carousel_sib:sec_third_project, formatLikes });
+    } catch (error) {
+        console.error('Error fetching projects:', error);
+        res.status(500).send('Server Error');
+    }
 });
 
 module.exports = router;

@@ -60,12 +60,12 @@
   border-radius: 25px;
   height: 3rem;
   width: 20rem;
-  padding-left: 10px;
+  padding-left: 50px;
 }
 .search-bar::placeholder {
   font-weight: 600;
   font-size: 1.2rem;
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
 }
 .search-icon {
   position: relative;
@@ -114,6 +114,7 @@
   margin: 30px 0;
   border-radius: 5px;
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -122,13 +123,38 @@
 form p{
   color: #6990f2;
   font-size: 16px;
+  user-select: none;
 }
-section .row{
+section .file-li{
    background: #e9f0ff;
    margin-bottom: 10px;
    list-style: none;
    padding: 15px 20px;
    border-radius: 5px;
+}
+
+section .file-li .fa-file{
+  color: #6990f2;
+}
+section .file-li .details span{
+  font-size: 14px;
+}
+.upload-area .file-li .content{
+  display: flex;
+  align-items: center;
+}
+.upload-area .file-li .details{
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+}
+.upload-area .details .size{
+  font-size: 11px;
+  color: #404040;
+}
+.upload-area .fa-check{
+  color: #6990f2;
+  font-size: 16px;
 }
 .card{
   border: 0;

@@ -24,25 +24,6 @@ app.use(bodyParser.json());
 app.use('/signin', signinRouter);
 
 app.use('/signup',signupRouter);
-const cards = [
-    {
-        title: "Card 1",
-        src: "/img/watchtower.jpg",
-    },
-    {
-        title: "Card 2",
-        src: "/img/watchtower.jpg",
-    },
-    {
-        title: "Card 2",
-        src: "/img/watchtower.jpg",
-    },
-    {
-        title: "Card 2",
-        src: "/img/watchtower.jpg",
-    },
-    // Add more card objects as needed...
-];
 app.use('/', homeRouter);
 
 const PORT = process.env.PORT || 3000;
@@ -83,7 +64,6 @@ app.post("/signin", async (req, res) => {
         const user = await User.findOne({ username });
 
         if (!user) {
-            console.log("hi")
             return res.status(401).send('Invalid username or password');
         }
 
