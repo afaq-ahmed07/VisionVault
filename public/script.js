@@ -122,4 +122,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const loginButton = document.getElementById('loginButton');
+
+// Add a click event listener to the button
+loginButton.addEventListener('click', () => {
+    // Redirect the user to the /signin route
+    window.location.href = '/signin';
+});
+
+const SignButton = document.getElementById('SignUpButton');
+
+// Add a click event listener to the button
+SignButton.addEventListener('click', () => {
+    // Redirect the user to the /signin route
+    window.location.href = '/signup';
+});
+
+
+
 

@@ -64,7 +64,6 @@ app.post("/signin", async (req, res) => {
         const user = await User.findOne({ username });
 
         if (!user) {
-            console.log("hi")
             return res.status(401).send('Invalid username or password');
         }
 
