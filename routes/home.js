@@ -45,13 +45,16 @@ router.get('/', async (req, res) => {
         projects.sort((a, b) => b.likes - a.likes);
         const topProject = projects[0];
         const sec_third_project = projects.slice(1, 3);
-        if (req.user) {
-            // If logged in, render a different file
-            res.send({ username: req.user.username, email: req.user.email });
-        } else {
-            // If not logged in, render the default file
-            res.render('index', { pageTitle: 'Home', cards: projects, carousel: topProject, carousel_sib: sec_third_project, formatLikes });
-        }
+        if(req.user){
+        res.render('index', {
+            pageTitle: 'Home',
+            cards: projects,
+            carousel: topProject,
+            carousel_sib: sec_third_project,
+            isLoggedIn: req.user ? true : false,
+            username: req.user ? req.user.username : null
+        });
+    }
     } catch (error) {
         console.error('Error fetching projects:', error);
         res.status(500).send('Server Error');

@@ -13,7 +13,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 me-3">
                         <li class="nav-item pe-3">
                             <form id="searchForm" class="d-flex pb-1 search-bar-form" role="search">
                                 <img class="search-icon" src="/img/search.svg" alt="">
@@ -40,10 +40,26 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item pe-4 d-flex log-sign-li">
-                        <button class="login" id="loginButton" role="button">Login</button>
-                            <button class="signup"  id="SignUpButton" role="button">Sign Up</button>
-                        </li>
+                        <% if (isLoggedIn) { %>
+                            <li class="nav-item dropdown dropstart pe-4">
+                                <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img class="profile-img" src="/img/profile.svg" alt="profile">
+                                </a>
+                                <ul class="dropdown-menu ">
+                                    <li><a class="dropdown-item" href="#"><img src="/img/lock.svg" alt="lock.svg">Change Password</a></li>
+                                    <li><a class="dropdown-item" href="#"><img src="/img/logout.svg" alt="logout.svg" class="inline-text">Logout</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Logged in as <%= username %></a></li>
+                                </ul>
+                            </li>
+                        <% } else { %>
+                            <li class="nav-item pe-4 d-flex log-sign-li">
+                                <button class="login" id="loginButton" role="button">Login</button>
+                                <button class="signup" id="SignUpButton" role="button">Sign Up</button>
+                            </li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
