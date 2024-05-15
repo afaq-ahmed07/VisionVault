@@ -54,11 +54,12 @@ async function submitForm(event) {
         });
 
         if (!response.ok) throw new Error('Failed to submit form');
-        alert('everything is ok');
-        window.location.href = '/'; 
+        
+        window.location.href = '/email-page'; 
     } catch (error) {
         console.error('Error:', error.message);
         alert('An error occurred while signing up');
     }
+
 }
 
