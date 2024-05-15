@@ -73,7 +73,6 @@ app.post("/signin", async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).send('Invalid username or password');
         }
-
         // Generate a JWT
         const token = jwt.sign({ username: user.username,email:user.email }, 'Nevergiveup', { expiresIn: '1h' });
 

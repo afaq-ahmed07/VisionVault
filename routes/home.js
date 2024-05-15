@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Project = require('../models/projects');
 const projectController = require('../controllers/project-add');
+const searchRouter = require('../routes/search');
 const carousel = [
     {
         src: "/img/interior.jpg",
@@ -28,27 +29,29 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 
 router.use('/projects', projectController);
+router.use('/search', searchRouter);
 
-function formatLikes(likes) {
-    if (likes >= 1000 && likes < 1000000) {
-        return (likes / 1000).toFixed(1) + 'K'; // Convert to K format
-    } else if (likes >= 1000000) {
-        return (likes / 1000000).toFixed(1) + 'M'; // Convert to M format
-    } else {
-        return likes; // Return as-is for values below 1000
-    }
-}
+
 
 // Route handler for the home page
 router.get('/', async (req, res) => {
     try {
-        const projects = await Project.find();
+        const query = req.query.query; // Get the search query from the request
+        let projects = await Project.find();
+        
+        if (query) {
+            // Filter projects based on the search query
+            projects = projects.filter(project =>
+                project.title.toLowerCase().includes(query.toLowerCase()) ||
+                project.desc.toLowerCase().includes(query.toLowerCase())
+            );
+        }
         // Sort the projects by likes in descending order
         projects.sort((a, b) => b.likes - a.likes);
         const topProject = projects[0];
         // Select the second and third projects
         const sec_third_project = projects.slice(1, 3);
-        res.render('index', { pageTitle: 'Home', cards: projects,carousel:topProject,carousel_sib:sec_third_project, formatLikes });
+        res.render('index', { pageTitle: 'Home', cards: projects,carousel:topProject,carousel_sib:sec_third_project });
     } catch (error) {
         console.error('Error fetching projects:', error);
         res.status(500).send('Server Error');
