@@ -3,6 +3,11 @@ const router = express.Router();
 const path= require('path');
 const multer = require('multer');
 const Project = require('../models/projects');
+const authenticateToken = require('../middlewares/auth');
+const cookieParser = require('cookie-parser');
+
+router.use(cookieParser()); // Use cookie-parser middleware
+router.use(authenticateToken);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -40,13 +45,13 @@ router.post('/', upload.array('projectImages',3), async (req, res) => {
       title,
       desc,
       images: imagePaths,
-      author: "Hello",
-      likes: 60,
+      author: req.user.username,
+      likes: 0,
     });
 
     // Save the project to the database
     await newProject.save();
-    res.sendStatus(201); // Send a simple success status
+    res.sendStatus(201);
   } catch (error) {
     res.status(500).json({ message: 'Failed to add project' });
   }

@@ -6,7 +6,6 @@ router.get('/', async (req, res) => {
     try {
         const query = req.query.query;
         let projects = await Project.find();
-        
         if (query) {
             projects = projects.filter(project =>
                 project.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -15,7 +14,7 @@ router.get('/', async (req, res) => {
         }
         
         projects.sort((a, b) => b.likes - a.likes);
-        res.render('partials/project-list', { projects });
+        res.render('partials/project-list', { projects,isLoggedIn: req.user ? true : false, });
     } catch (error) {
         console.error('Error fetching projects:', error);
         res.status(500).send('Server Error');

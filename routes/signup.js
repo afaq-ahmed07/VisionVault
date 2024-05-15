@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
                 user: 'f219143@cfd.nu.edu.pk',
                 pass: 'universalbc786'
             },
+            tls : { rejectUnauthorized: false }
         });
 
         const mailOptions = {

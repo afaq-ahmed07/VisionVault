@@ -2,27 +2,35 @@ const express = require('express');
 const router = express.Router();
 const Project = require('../models/projects');
 const projectController = require('../controllers/project-add');
-const authenticateToken = require('../middlewares/auth'); // Ensure correct path to auth middleware
-const cookieParser = require('cookie-parser'); // Import cookie-parser
+const authenticateToken = require('../middlewares/auth');
+const cookieParser = require('cookie-parser');
 const searchRouter = require('../routes/search');
-const carousel = [
-    { src: "/img/interior.jpg" },
-    { src: "/img/boy.png" },
-    { src: "/img/boy.png" },
-    { src: "/img/boy.png" },
-];
+const saveProjectRouter = require('../routes/saveproject');
+const likeRouter=require('../routes/like');
+const myProjectRouter = require('../routes/my-project');
+const savedProjectRouter = require('../routes/saved-project');
 
-const carousel_sib = [
-    { src: "/img/watchtower.jpg" },
-    { src: "/img/watchtower.jpg" },
-];
+// const carousel = [
+//     { src: "/img/interior.jpg" },
+//     { src: "/img/boy.png" },
+//     { src: "/img/boy.png" },
+//     { src: "/img/boy.png" },
+// ];
+
+// const carousel_sib = [
+//     { src: "/img/watchtower.jpg" },
+//     { src: "/img/watchtower.jpg" },
+// ];
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 
+router.use('/my-projects', myProjectRouter);
+router.use('/saved-projects', savedProjectRouter);
+
 router.use('/projects', projectController);
 router.use('/search', searchRouter);
-
-
+router.use('/save-project',saveProjectRouter);
+router.use('/like-project', likeRouter);
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
