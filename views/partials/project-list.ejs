@@ -1,0 +1,23 @@
+<% projects.forEach(project=> { %>
+    <div class="card col-lg-4 col-md-6" data-bs-toggle="modal" data-bs-target="#cardModal"
+        data-title="<%= project.title %>" data-desc="<%= project.desc %>" data-images="<%= project.images.join(',') %>">
+        <img src="<%= project.images[0] %>" class="card-img-top card-img" alt="...">
+        <div class="card-body">
+            <div class="card-info">
+                <h5 class="card-title">
+                    <%= project.title %>
+                </h5>
+                <p>
+                    <%= project.author %>
+                </p>
+            </div>
+            <div class="card-stats">
+                <span class="like-span">
+                    <img class="like-svg" src="/img/like.svg" alt="">
+                    <span class="like-count" data-likes="<%= project.likes %>"><%= project.likes %></span>
+                </span>
+            </div>
+            <button type="button" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+    <% }) %>

@@ -138,6 +138,43 @@ SignButton.addEventListener('click', () => {
     window.location.href = '/signup';
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const query = searchInput.value;
+
+        fetch(`/search?query=${encodeURIComponent(query)}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('searchResults').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    const likeElements = document.querySelectorAll('.like-count');
+
+    // Iterate over each element and update the text content with formatted likes
+    likeElements.forEach(element => {
+        const likes = parseInt(element.getAttribute('data-likes'), 10);
+        element.textContent = formatLikes(likes);
+    });
+});
+
+function formatLikes(likes) {
+    if (likes >= 1000 && likes < 1000000) {
+        return (likes / 1000).toFixed(1) + 'K'; // Convert to K format
+    } else if (likes >= 1000000) {
+        return (likes / 1000000).toFixed(1) + 'M'; // Convert to M format
+    } else {
+        return likes; // Return as-is for values below 1000
+    }
+}
+
+
 
 
 
