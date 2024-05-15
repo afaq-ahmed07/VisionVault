@@ -1,20 +1,27 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+
 const path = require('path');
 const router = express.Router();
 const signinRouter = require('./routes/signin');
 const signupRouter=require('./routes/signup')
+const emailRouter=require('./routes/email')
 const mongoose = require("mongoose");
-const User = require('./models/user');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const app = express();
 const homeRouter= require('./routes/home')
+
+//database
+require("./config/connect");
+
+
+
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
+
 
 //app.use(express.json()); // For parsing application/json
 // Middleware to parse form data
@@ -24,7 +31,12 @@ app.use(bodyParser.json());
 app.use('/signin', signinRouter);
 
 app.use('/signup',signupRouter);
+
+app.use('/email-page',emailRouter);
+
 app.use('/', homeRouter);
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -32,29 +44,9 @@ app.listen(PORT, () => {
 });
 
 
-//database
 
-require("./config/connect");
 
-app.post("/signup", async (req, res) => {
-    const { username, email , password } = req.body;
 
-    try {
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create a new user with the hashed password
-        const newUser = new User({ username, email, password: hashedPassword });
-
-        // Save the user to the database
-        await newUser.save();
-
-        res.status(201).send('User created successfully');
-    } catch (error) {
-        console.error('Error during signup:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
 
 app.post("/signin", async (req, res) => {
     const { username, password } = req.body;
