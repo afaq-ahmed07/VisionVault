@@ -1,9 +1,48 @@
+// /routes/email.js
 const express = require('express');
 const router = express.Router();
-const path = require('path'); // Import the path module
+const User = require('../models/User'); // Adjust the path as necessary
 
+// In-memory store for unverified users
+let tempUserStore = {};
+
+// This function allows access to the tempUserStore in other files if needed
+function getTempUserStore() {
+  return tempUserStore;
+}
+
+// Endpoint to render the email page
 router.get('/', (req, res) => {
     res.render('emailpage');
 });
 
-module.exports = router;
+// Endpoint to handle email verification
+router.get('/verify-email', async (req, res) => {
+    try {
+        const { token } = req.query;
+        const tempUser = tempUserStore[token];
+
+        if (!tempUser || tempUser.verificationTokenExpiry < Date.now()) {
+            return res.status(400).send('Invalid or expired token');
+        }
+
+        // Create new user in the database
+        const newUser = new User({
+            username: tempUser.username,
+            email: tempUser.email,
+            password: tempUser.password
+        });
+
+        await newUser.save();
+
+        // Remove user from temporary storage
+        delete tempUserStore[token];
+
+        res.status(200).send('Email verified successfully. You can now log in.');
+    } catch (error) {
+        console.error('Error verifying email:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+module.exports = { router, getTempUserStore };
