@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <%- include('partials/navbar')%>
+    <%- include('partials/navbar', { isLoggedIn: isLoggedIn, username: username }) %>
         <div class="row">
             <div class="col-lg-7 col-md-12">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
