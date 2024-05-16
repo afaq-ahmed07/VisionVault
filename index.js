@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
 
 // Import your route modules
 const signinRouter = require('./routes/signin');
@@ -11,6 +13,9 @@ const { router: emailRouter } = require('./routes/email'); // Destructure to get
 const forgetpasswordRouter = require('./routes/forgetpassword'); // Destructure to get the router
 const homeRouter = require('./routes/home');
 const aboutRouter = require('./routes/about');
+const logoutRouter = require('./routes/logout');
+const changepasswordRouter = require('./routes/changepassword');
+
 
 
 // Initialize express app
@@ -27,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Middleware to parse JSON and form data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Route management
 app.use('/signin', signinRouter);
@@ -35,6 +41,8 @@ app.use('/email-page', emailRouter);
 app.use('/', homeRouter);
 app.use('/forgetpassword',forgetpasswordRouter)
 app.use('/about',aboutRouter)
+app.use('/logout',logoutRouter)
+app.use('/changepassword',changepasswordRouter)
 
 // Start the server
 const PORT = process.env.PORT || 3000;
