@@ -50,7 +50,6 @@ async function signinFORM(event) {
         });
 
         if (!response.ok) throw new Error('Failed to submit form');
-        alert('everything is ok');
         window.location.href = '/'; 
     } catch (error) {
     console.error('Error:', error);
