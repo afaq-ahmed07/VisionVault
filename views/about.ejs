@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About VisionVault</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<body>
+    <%- include('partials/navbar',{isLoggedIn:false}) %>
+<div class="container">
+    <header class="header-section">
+        <h1 class="title">About VisionVault</h1>
+        <p class="intro">VisionVault is an online platform where creative individuals can showcase their projects and talents, connect with opportunities, and explore innovative work from others.From showcasing your talents to discovering new inspiration and forging meaningful connections, VisionVault is your gateway to the global creative community. Join us today and unleash your creativity on a global scale!</p>
+    </header>
+    <section class="mission-section">
+        <h2 class="section-title">Our Mission</h2>
+        <p class="mission-text">At VisionVault, our mission is to empower individuals in the creative community by providing a platform where they can share their passion, collaborate with like-minded individuals, and pursue exciting opportunities in the creative industry.</p>
+    </section>
+    <section class="features-section">
+        <h2 class="section-title">Key Features</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <i class="fas fa-image"></i>
+                <h3>Project Showcasing</h3>
+                <p>Showcase your projects and portfolio in a visually stunning way.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-search"></i>
+                <h3>Talent Exploration</h3>
+                <p>Discover talented individuals and explore their creative work.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-handshake"></i>
+                <h3>Project Opportunities</h3>
+                <p>Find project-based opportunities and collaborate with others.</p>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials-section">
+        <h2 class="section-title">What Our Users Say</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <img src="/img/p1.jpg" alt="User 1">
+                <p>"VisionVault has been instrumental in helping me showcase my work and connect with potential clients. Highly recommended!"</p>
+                <p class="user-info">- John Doe</p>
+            </div>
+            <div class="testimonial">
+                <img src="/img/p2.webp" alt="User 2">
+                <p>"I've found amazing talent on VisionVault for my latest project. It's a fantastic platform for collaboration."</p>
+                <p class="user-info">- Jane Smith</p>
+            </div>
+        </div>
+    </section>
+    <section class="team-section">
+        <h2 class="section-title">Meet Our Team</h2>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="/img/p1.jpg" alt="Team Member 1">
+                <h3>John Doe</h3>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="/img/p2.webp" alt="Team Member 2">
+                <h3>Jane Smith</h3>
+                <p>Head of Design</p>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section">
+        <h2 class="section-title">Join VisionVault Today</h2>
+        <p class="cta-text">Sign up now to start showcasing your talent, exploring projects, and connecting with opportunities!</p>
+        <button class="btn btn-primary">Sign Up</button>
+    </section>
+        <div class="contact-info">
+            <p>Email: info@visionvault.com</p>
+        </div>
+</div>
+<%- include('partials/footer')%>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
+</body>
+</html>

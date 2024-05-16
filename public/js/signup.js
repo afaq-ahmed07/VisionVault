@@ -52,7 +52,11 @@ async function submitForm(event) {
             },
             body: JSON.stringify(formObject)
         });
-
+        if (response.status === 400) {
+            const errorMessage = await response.text();
+            alert(errorMessage);
+            return;
+        }
         if (!response.ok) throw new Error('Failed to submit form');
         
         window.location.href = '/email-page'; 

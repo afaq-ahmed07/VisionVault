@@ -38,7 +38,9 @@ router.get('/verify-email', async (req, res) => {
         // Remove user from temporary storage
         delete tempUserStore[token];
 
-        res.status(200).send('Email verified successfully. You can now log in.');
+         // Redirect to the sign-in page
+        res.redirect('/signin?closed=true');
+
     } catch (error) {
         console.error('Error verifying email:', error);
         res.status(500).send('Internal Server Error');
