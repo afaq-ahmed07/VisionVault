@@ -29,7 +29,7 @@ router.get('/',async (req, res) => {
             cards: projects,
             isLoggedIn: true,
             username: username,
-            ismy:false
+            ismy:true
         });
     } catch (error) {
         console.error('Error fetching projects:', error);

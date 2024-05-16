@@ -71,7 +71,7 @@
                             </span>
                         </div>
                         <% if (isLoggedIn) { %>
-                            <% if (ismy) { %>
+                            <% if (!ismy) { %>
                                 <button type="button" class="btn btn-primary save-btn"
                                     onclick="saveProject('<%= project._id %>')">Save</button>
                                 <% } %>

@@ -9,6 +9,7 @@ const saveProjectRouter = require('../routes/saveproject');
 const likeRouter=require('../routes/like');
 const myProjectRouter = require('../routes/my-project');
 const savedProjectRouter = require('../routes/saved-project');
+const editProjectRouter = require('../routes/edit-project'); 
 
 // const carousel = [
 //     { src: "/img/interior.jpg" },
@@ -31,6 +32,7 @@ router.use('/projects', projectController);
 router.use('/search', searchRouter);
 router.use('/save-project',saveProjectRouter);
 router.use('/like-project', likeRouter);
+router.use(editProjectRouter);
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));

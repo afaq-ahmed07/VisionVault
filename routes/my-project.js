@@ -3,11 +3,8 @@ const router = express.Router();
 const authenticateToken = require('../middlewares/auth');
 const cookieParser = require('cookie-parser');
 const Project = require('../models/projects');
-
 router.use(cookieParser()); // Use cookie-parser middleware
 router.use(authenticateToken);
-
-
 router.get('/',async (req, res) => {
     try {
         const query = req.query.query; // Get the search query from the request
@@ -28,7 +25,7 @@ router.get('/',async (req, res) => {
             pageTitle: 'My Projects',
             cards: projects,
             isLoggedIn: true,
-            username: username
+            username: username,
         });
     } catch (error) {
         console.error('Error fetching projects:', error);

@@ -25,7 +25,11 @@ const saveProjectSchema = new mongoose.Schema({
     likes: {
       type: Number,
       default: 0
-    }
+    },
+    likedBy: {
+      type: [String], // Array of user IDs who liked the project
+      default: []
+  }
   }
 });
 
