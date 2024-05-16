@@ -21,10 +21,10 @@
                             </form>                          
                         </li>
                         <li class="nav-item nav-pages pe-4">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item nav-pages pe-4">
-                            <a class="nav-link" aria-current="page" href="#">About</a>
+                            <a class="nav-link" aria-current="page" href="/about">About</a>
                         </li>
                         <% if (isLoggedIn) { %>
                         <li class="nav-item nav-pages dropdown pe-4">
@@ -52,8 +52,8 @@
                             </li>
                         <% } else { %>
                             <li class="nav-item pe-4 d-flex log-sign-li">
-                                <button class="login" id="loginButton" role="button">Login</button>
-                                <button class="signup" id="SignUpButton" role="button">Sign Up</button>
+                                <button class="login" id="loginButton" onclick=signinPage() role="button">Login</button>
+                                <button class="signup" id="SignUpButton" onclick=signupPage() role="button">Sign Up</button>
                             </li>
                         <% } %>
                     </ul>
