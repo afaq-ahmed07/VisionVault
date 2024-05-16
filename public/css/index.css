@@ -5,9 +5,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* .header{
-  padding-bottom: 3rem;
-} */
 .navbar{
   background-color: white;
   padding-top: 1rem;
@@ -73,11 +70,11 @@
   left: 2rem;
 }
 .carousel{
-  width: 850px;
+  width: 780px;
 }
 .carousel-inner{
   border: 2px solid black;
-  width: 850px;
+  width: 780px;
   height: 415px;
 }
 .carousel-item{
@@ -88,10 +85,10 @@
   height: 415px;
   object-fit: cover;
 }
-.carousel-sib-div{
+/* .carousel-sib-div{
   width: fit-content;
   margin-right: 8px;
-}
+} */
 .carousel-sibling{
     width: 100%;
     height: 200px;
@@ -107,10 +104,6 @@
   font-size: small;
   font-weight: 600;
 }
-/* .hr-project{
-  width: 1250px;
-  margin-left: 1.6rem;
-} */
 .wrapper form{
   height: 167px;
   margin: 30px 0;
@@ -158,16 +151,6 @@ section .file-li .details span{
   color: #6990f2;
   font-size: 16px;
 }
-#searchResults{
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 1rem; */
-  background-color: #0a66c2;
-}
-/* .card{
-  border: 0;
-  flex-basis: 30%;
-} */
 .card-body{
   display: flex;
   flex-wrap: wrap;
@@ -216,6 +199,16 @@ footer li a{
 .footer-brand{
   font-weight: 600;
 }
+.like-svg{
+  position: relative;
+  top: -3px;
+  right:5px;
+  margin-left: 5px;
+}
+.edit-svg{
+  position: relative;
+  top: -3px;
+}
 @media (max-width: 992px) {
   .log-sign-li{
     padding-top: 1rem;
@@ -235,16 +228,27 @@ footer li a{
     width: 20rem;
     position: relative;
     left: -1rem;
-    z-index: -1;
+    padding-left: 3rem;
   }
   .carousel-sib-div{
+    margin-top: 2rem;
+  }
+  .nav-user{
     display: none;
+  }
+  .profile-dropdown{
+    position: absolute;
+    top: 4.8rem;
+  }
+  .search-bar-div{
+    width: 90%;
+    margin-left: 2.5rem;
+  }
+  .nav-link{
+    text-align: center;
+  }
+  .nav-pages:hover{
+    border-bottom: #ffffff;
   }
   
 }
-/* @media (max-width: 768px) {
-  .card{
-    border: 0;
-    flex-basis: 50%;
-  }
-} */

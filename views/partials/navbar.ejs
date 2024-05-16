@@ -1,6 +1,6 @@
 <div class="row header">
     <div class="col-lg-12">
-        <nav class="navbar navbar-expand-lg border-bottom border-light">
+        <nav class="navbar navbar-expand-lg border-bottom border-light  rounded">
             <a class="navbar-brand ps-3" href="#">VisionVault</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg"
                 aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 me-3">
-                        <li class="nav-item pe-3">
+                        <li class="nav-item pe-3 search-bar-div">
                             <form id="searchForm" class="d-flex pb-1 search-bar-form" role="search">
                                 <img class="search-icon" src="/img/search.svg" alt="">
                                 <input class="form-control search-bar flex-grow-1" type="search" name="query" id="searchInput" placeholder="Search" aria-label="Search">
@@ -37,19 +37,16 @@
                                 <li><a class="dropdown-item" href="/saved-projects">Saved Projects</a></li>
                             </ul>
                         </li>
-                            <li class="nav-item dropdown dropstart pe-4">
+                            <li class="nav-item dropdown profile-dropdown dropstart">
                                 <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img class="profile-img" src="/img/profile.svg" alt="profile">
                                 </a>
                                 <ul class="dropdown-menu ">
                                     <li><a class="dropdown-item" href="/changepassword"><img src="/img/lock.svg" alt="lock.svg">Change Password</a></li>
                                     <li><a class="dropdown-item" href="/logout"><img src="/img/logout.svg" alt="logout.svg" class="inline-text">Logout</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Logged in as <%= username %></a></li>
                                 </ul>
                             </li>
+                            <li><a class="dropdown-item nav-link nav-user pe-4" href="#"><%= username %></a></li>
                         <% } else { %>
                             <li class="nav-item pe-4 d-flex log-sign-li">
                                 <button class="login" id="loginButton" onclick=signinPage() role="button">Login</button>
