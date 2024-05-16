@@ -2,7 +2,7 @@ function validateForm(formObject) {
     // Check if any field is empty
     for (const [key, value] of Object.entries(formObject)) {
         if (!value) {
-            alert(`${key} cannot be empty`);
+            showDangerAlert(`${key} cannot be empty`);
             return false;
         }
     }
@@ -10,7 +10,7 @@ function validateForm(formObject) {
     // Check username length and character requirements
     const usernamePattern = /^[A-Za-z]{4,}$/;
     if (!usernamePattern.test(formObject.username)) {
-        alert('wrong username or password');
+        showDangerAlert('invalid username');
         return false;
     }
 
@@ -18,7 +18,7 @@ function validateForm(formObject) {
     // Check password strength
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
     if (!passwordPattern.test(formObject.password)) {
-        alert('wrong username or password');
+        showDangerAlert('invalid password');
         return false;
     }
 
@@ -56,4 +56,20 @@ async function signinFORM(event) {
     alert('wrong credentials');
 }
 
+}
+
+function showDangerAlert(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+    });
+}
+
+function showSuccessAlert(message) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: message,
+    });
 }

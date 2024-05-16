@@ -2,7 +2,7 @@ function validateForm(formObject) {
     // Check if any field is empty
     for (const [key, value] of Object.entries(formObject)) {
         if (!value) {
-            alert(`${key} cannot be empty`);
+            showDangerAlert(`${key} cannot be empty`);
             return false;
         }
     }
@@ -10,21 +10,21 @@ function validateForm(formObject) {
     // Check username length and character requirements
     const usernamePattern = /^[A-Za-z]{4,}$/;
     if (!usernamePattern.test(formObject.username)) {
-        alert('Username must be at least 4 characters long and contain only alphabets');
+        showDangerAlert('Username must be at least 4 characters long and contain only alphabets');
         return false;
     }
 
     // Check email format
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(formObject.email)) {
-        alert('Invalid email format');
+        showDangerAlert('Invalid email format');
         return false;
     }
 
     // Check password strength
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
     if (!passwordPattern.test(formObject.password)) {
-        alert('Password must be at least 5 characters long, contain at least one letter and one number');
+        showDangerAlert('Password must be at least 5 characters long, contain at least one letter and one number');
         return false;
     }
 
@@ -67,3 +67,18 @@ async function submitForm(event) {
 
 }
 
+function showDangerAlert(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+    });
+}
+
+function showSuccessAlert(message) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: message,
+    });
+}

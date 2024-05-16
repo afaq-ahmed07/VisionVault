@@ -4,20 +4,20 @@ function uploadProject() {
     const images = document.getElementById('project-images').files;
     const allowedExtensions = /(\.jpg|\.png)$/i;
     if (images.length < 3 || images.length > 3) {
-        alert('Upload 3 files to Continue.');
+        showDangerAlert('Upload 3 files to Continue.');
         return;
     }
 
     for (let i = 0; i < images.length; i++) {
         // Client-side validation for file type
         if (!allowedExtensions.exec(images[i].name)) {
-            alert('Invalid file type. Only JPG and PNG are allowed.');
+            showDangerAlert('Invalid file type. Only JPG and PNG are allowed.');
             return;
         }
 
         // Client-side validation for file size
         if (images[i].size > 5 * 1024 * 1024) { // 5MB
-            alert('File size should not exceed 5MB.');
+            showDangerAlert('File size should not exceed 5MB.');
             return;
         }
     }
@@ -47,11 +47,11 @@ function uploadProject() {
             console.log(data);
             const closeButton = document.querySelector('#project-modal .btn-close');
             closeButton.click(); // Close the modal
-            alert("Project added Successfully");
+            showSuccessAlert("Project added Successfully");
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Failed to add project');
+            showSuccessAlert('Failed to add project');
         });
 }
 
@@ -73,7 +73,7 @@ fileInput.onchange = (event) => {
         const fileSize = file.size;
         Array.from(files).forEach((file) => {
             if (!allowedExtensions.test(file.name)) {
-                alert('Invalid file type. Only JPG and PNG are allowed.');
+                showDangerAlert('Invalid file type. Only JPG and PNG are allowed.');
                 return;
             }
         });
@@ -91,7 +91,7 @@ fileInput.onchange = (event) => {
                 </li>`;
             uploadArea.insertAdjacentHTML('afterbegin', uploadHTML);
         } else {
-            alert('Invalid file type. Only JPG and PNG are allowed.');
+            showDangerAlert('Invalid file type. Only JPG and PNG are allowed.');
         }
     });
 }
@@ -245,4 +245,20 @@ function saveProjectChanges() {
         }
     })
     .catch(error => console.error('Error saving project changes:', error));
+}
+
+function showDangerAlert(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+    });
+}
+
+function showSuccessAlert(message) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: message,
+    });
 }
