@@ -18,7 +18,6 @@ router.post('/', async (req, res) => {
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
-    console.log(project);
     // Check if the project is already saved by this user
     const temp_project = await SaveProject.findOne({
       username: req.user.username, 
@@ -26,11 +25,9 @@ router.post('/', async (req, res) => {
       'project.desc': project.desc,
       'project.author': project.author
     });
-    console.log(temp_project);
     if (temp_project) {
       return res.status(400).json({ message: 'Project already saved' });
     }
-    console.log(temp_project);
     // If not, create a new SaveProject entry
     const saveProject = new SaveProject({
       username: req.user.username,
