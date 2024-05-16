@@ -1,26 +1,33 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const projectSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  desc: {
-    type: String,
-    required: true
-  },
-  images: {
-    type: [String], // Array of strings (image URLs)
-    required: true
-  },
-  author: {
-    type: String,
-    required: true
-  },
-  likes: {
-    type: Number,
-    default: 0 // Default value for likes (optional)
-  }
+const projectSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    desc: {
+        type: String,
+        required: true
+    },
+    images: {
+        type: [String],
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    likedBy: {
+        type: [String], // Array of user IDs who liked the project
+        default: []
+    }
 });
+
 const Project = mongoose.model('Project', projectSchema);
+
 module.exports = Project;

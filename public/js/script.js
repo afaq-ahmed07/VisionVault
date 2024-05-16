@@ -95,32 +95,36 @@ fileInput.onchange = (event) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const cardModal = document.getElementById('cardModal');
-    cardModal.addEventListener('show.bs.modal', (event) => {
-        const button = event.relatedTarget; // Button that triggered the modal
-        const title = button.getAttribute('data-title');
-        const desc = button.getAttribute('data-desc');
-        const images = button.getAttribute('data-images').split(',');
+    const modalTriggerElements = document.querySelectorAll('.card-img, .card-info');
 
-        // Update the modal's content.
-        const modalTitle = cardModal.querySelector('.modal-title');
-        const modalCardImages = cardModal.querySelector('#modalCardImages');
-        const modalDesc = cardModal.querySelector('#modalCardDesc');
+    modalTriggerElements.forEach(element => {
+        element.addEventListener('click', function(event) {
+            const title = this.getAttribute('data-title');
+            const desc = this.getAttribute('data-desc');
+            const images = this.getAttribute('data-images').split(',');
 
-        modalTitle.textContent = title;
-        modalDesc.textContent = desc;
+            // Update the modal's content.
+            const modalTitle = cardModal.querySelector('.modal-title');
+            const modalCardImages = cardModal.querySelector('#modalCardImages');
+            const modalDesc = cardModal.querySelector('#modalCardDesc');
 
-        // Clear previous images
-        modalCardImages.innerHTML = '';
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
 
-        // Add new images
-        images.forEach((image) => {
-            const imgElement = document.createElement('img');
-            imgElement.src = image.trim();
-            imgElement.classList.add('img-fluid', 'mb-2'); // Adjust classes as needed
-            modalCardImages.appendChild(imgElement);
+            // Clear previous images
+            modalCardImages.innerHTML = '';
+
+            // Add new images
+            images.forEach((image) => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image.trim();
+                imgElement.classList.add('img-fluid', 'mb-2'); // Adjust classes as needed
+                modalCardImages.appendChild(imgElement);
+            });
         });
     });
 });
+
 
 const loginButton = document.getElementById('loginButton');
 
@@ -146,13 +150,17 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Prevent the default form submission
 
         const query = searchInput.value;
-
+        if (query === "") {
+            window.location.href = "/";
+        } 
+        else {
         fetch(`/search?query=${encodeURIComponent(query)}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('searchResults').innerHTML = data;
             })
             .catch(error => console.error('Error:', error));
+        }
     });
 
     const likeElements = document.querySelectorAll('.like-count');
@@ -164,6 +172,59 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+async function toggleLike(projectId) {
+    const elementId = `likeCount${projectId}`;
+    // console.log('Element ID:', elementId);
+
+    const likeCountElement = document.getElementById(elementId);
+    // console.log('Element:', likeCountElement);
+
+    if (!likeCountElement) {
+        console.error('Element not found:', elementId);
+        return;
+    }
+    const currentLikes = parseInt(likeCountElement.getAttribute('data-likes'));
+    try {
+        const response = await fetch(`/like-project/${projectId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ currentLikes })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            likeCountElement.textContent = data.likes;
+            likeCountElement.setAttribute('data-likes', data.likes);
+        } else {
+            console.error('Failed to toggle like');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Function to save a project
+async function saveProject(projectId) {
+    try {
+        const response = await fetch('/save-project', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ projectId })
+        });
+
+        if (response.ok) {
+            alert('Project saved successfully!');
+        } else {
+            alert('Failed to save the project.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 function formatLikes(likes) {
     if (likes >= 1000 && likes < 1000000) {
         return (likes / 1000).toFixed(1) + 'K'; // Convert to K format

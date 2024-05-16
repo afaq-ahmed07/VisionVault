@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= pageTitle %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <%- include('partials/navbar', { isLoggedIn: isLoggedIn, username: username }) %>
+
+        <div class="row mt-3 pb-3">
+            <div class="col-lg-10 col-md-8 col-sm-8">
+                <h1 class="project-head">Projects <span class="project-count">(<%= cards.length %>)</span>
+                </h1>
+            </div>
+        <!-- Project Desc Modal -->
+        <div class="modal fade" id="cardModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="cardModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="cardModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalCardDesc"></p>
+                        <div id="modalCardImages" class="mb-3">
+                            <!-- Images will be dynamically added here -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="searchResults" class="row m-2 d-flex">
+            <% cards.forEach(project=> { %>
+                <div class="card col-lg-4 col-md-6">
+                    <img src="<%= project.project.images[0] %>" class="card-img-top card-img" alt="..." data-bs-toggle="modal"
+                        data-bs-target="#cardModal" data-title="<%= project.project.title %>" data-desc="<%= project.project.desc %>"
+                        data-images="<%= project.project.images.join(',') %>">
+                    <div class="card-body">
+                        <div class="card-info" data-bs-toggle="modal" data-bs-target="#cardModal"
+                            data-title="<%= project.project.title %>" data-desc="<%= project.project.desc %>"
+                            data-images="<%= project.project.images.join(',') %>">
+                            <h5 class="card-title">
+                                <%= project.project.title %>
+                            </h5>
+                            <p>
+                                <%= project.project.author %>
+                            </p>
+                        </div>
+                        <div class="card-stats">
+                            <span class="like-span">
+                                <img class="like-svg" src="/img/like.svg" alt="" <% if (isLoggedIn) { %>
+                                onclick="toggleLike('<%= project._id %>')"
+                                    <% } %>>
+                                        <span class="like-count" id="likeCount<%= project._id %>"
+                                            style="user-select: none;" data-likes="<%= project.project.likes %>">
+                                            <%= project.project.likes %>
+                                        </span>
+                            </span>
+                        </div>
+                        <% if (isLoggedIn) { %>
+                            <% if (ismy) { %>
+                                <button type="button" class="btn btn-primary save-btn"
+                                    onclick="saveProject('<%= project._id %>')">Save</button>
+                                <% } %>
+                                    <% } %>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+        <%- include('partials/footer')%>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
+            <script src="/js/script.js"></script>
+</body>
+
+</html>

@@ -1,9 +1,11 @@
 <% projects.forEach(project=> { %>
-    <div class="card col-lg-4 col-md-6" data-bs-toggle="modal" data-bs-target="#cardModal"
-        data-title="<%= project.title %>" data-desc="<%= project.desc %>" data-images="<%= project.images.join(',') %>">
-        <img src="<%= project.images[0] %>" class="card-img-top card-img" alt="...">
+    <div class="card col-lg-4 col-md-6">
+        <img src="<%= project.images[0] %>" class="card-img-top card-img" alt="..." data-bs-toggle="modal"
+            data-bs-target="#cardModal" data-title="<%= project.title %>" data-desc="<%= project.desc %>"
+            data-images="<%= project.images.join(',') %>">
         <div class="card-body">
-            <div class="card-info">
+            <div class="card-info" data-bs-toggle="modal" data-bs-target="#cardModal" data-title="<%= project.title %>"
+                data-desc="<%= project.desc %>" data-images="<%= project.images.join(',') %>">
                 <h5 class="card-title">
                     <%= project.title %>
                 </h5>
@@ -13,11 +15,21 @@
             </div>
             <div class="card-stats">
                 <span class="like-span">
-                    <img class="like-svg" src="/img/like.svg" alt="">
-                    <span class="like-count" data-likes="<%= project.likes %>"><%= project.likes %></span>
+                    <img class="like-svg" src="/img/like.svg" alt="" <% if (isLoggedIn) { %>
+                    onclick="toggleLike('<%= project._id %>')"
+                        <% } %>>
+                            <span class="like-count" id="likeCount<%= project._id %>" style="user-select: none;"
+                                data-likes="<%= project.likes %>">
+                                <%= project.likes %>
+                            </span>
                 </span>
             </div>
-            <button type="button" class="btn btn-primary">Save</button>
+            <% if (isLoggedIn) { %>
+                <% if (ismy) { %>
+                <button type="button" class="btn btn-primary save-btn"
+                    onclick="saveProject('<%= project._id %>')">Save</button>
+                <% } %>
+            <% } %>
         </div>
     </div>
     <% }) %>

@@ -26,21 +26,17 @@
                         <li class="nav-item nav-pages pe-4">
                             <a class="nav-link" aria-current="page" href="#">About</a>
                         </li>
+                        <% if (isLoggedIn) { %>
                         <li class="nav-item nav-pages dropdown pe-4">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Explore
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="/my-projects">My Projects</a></li>
+                                <li><a class="dropdown-item" href="/saved-projects">Saved Projects</a></li>
                             </ul>
                         </li>
-                        <% if (isLoggedIn) { %>
                             <li class="nav-item dropdown dropstart pe-4">
                                 <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img class="profile-img" src="/img/profile.svg" alt="profile">
