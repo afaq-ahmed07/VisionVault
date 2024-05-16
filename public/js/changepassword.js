@@ -10,11 +10,14 @@ function validateForm(formObject) {
 
     // Check password strength
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
-    if (!passwordPattern.test(formObject.password)) {
+    if (!passwordPattern.test(formObject.oldpass)) {
         alert('wrong password');
         return false;
     }
-
+    if (!passwordPattern.test(formObject.newpass)) {
+        alert('wrong password');
+        return false;
+    }
     return true;
 }
  
