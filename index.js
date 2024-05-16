@@ -8,7 +8,10 @@ const bodyParser = require('body-parser');
 const signinRouter = require('./routes/signin');
 const signupRouter = require('./routes/signup');
 const { router: emailRouter } = require('./routes/email'); // Destructure to get the router
+const forgetpasswordRouter = require('./routes/forgetpassword'); // Destructure to get the router
 const homeRouter = require('./routes/home');
+const aboutRouter = require('./routes/about');
+
 
 // Initialize express app
 const app = express();
@@ -30,6 +33,8 @@ app.use('/signin', signinRouter);
 app.use('/signup', signupRouter);
 app.use('/email-page', emailRouter);
 app.use('/', homeRouter);
+app.use('/forgetpassword',forgetpasswordRouter)
+app.use('/about',aboutRouter)
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const { getTempUserStore } = require('./email'); // Import the function to get tempUserStore
+const User = require('../models/User'); // Adjust the path as necessary
 
 // Utilize the tempUserStore from email route
 const tempUserStore = getTempUserStore();
@@ -12,6 +13,18 @@ router.post("/", async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
+        // Check if the username already exists
+        const existingUsername = await User.findOne({ username });
+        if (existingUsername) {
+            return res.status(400).send('Username already exists.');
+        }
+
+        // Check if the email already exists
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            return res.status(400).send('Email already exists.');
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const verificationToken = crypto.randomBytes(20).toString('hex');
 
@@ -47,6 +60,7 @@ router.post("/", async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 router.get('/', (req, res) => {
     res.render('signup');

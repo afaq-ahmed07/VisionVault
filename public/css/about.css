@@ -1,0 +1,266 @@
+/* Custom Styles for About Page */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header{
+  padding-bottom: 3rem;
+}
+.navbar{
+  background-color: white;
+  padding-top: 1rem;
+}
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.nav-item {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.nav-pages:hover {
+  border-bottom: 2px solid black;
+}
+
+.search-bar-form {
+  margin-right: 2rem;
+}
+.login,.signup{
+  align-items: center;
+  border-radius: 100px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  width: 6.8rem;
+  height: 3rem;
+  overflow: hidden;
+  text-align: center;
+}
+.login{
+    padding-left: 27px;
+    padding-right: 27px;
+    background-color: #e8edf1;
+    color: #0a66c2;
+    border: 1px solid #ffffff;
+    margin-right: 0.5rem;
+}
+.signup{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #0a66c2;
+    color: #ffffff;
+    border: 0;
+}
+.login:hover,.signup:hover{
+  box-shadow: rgba(94, 94, 105, 0.2) 0px 7px 29px 0px;
+  border:0;
+}
+.search-bar {
+  border-radius: 25px;
+  height: 3rem;
+  width: 20rem;
+  padding-left: 50px;
+}
+.search-bar::placeholder {
+  font-weight: 600;
+  font-size: 1.2rem;
+  /* padding-left: 2rem; */
+}
+.search-icon {
+  position: relative;
+  left: 2rem;
+}
+
+/* Header Section */
+.header-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #333;
+}
+
+.intro {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Mission Section */
+.mission-section {
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.mission-text {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Features Section */
+.features-section {
+    margin-bottom: 50px;
+}
+
+.feature-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.feature-card {
+    text-align: center;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust card width for responsiveness */
+    max-width: calc(33.33% - 20px); /* Adjust card width for responsiveness */
+}
+
+.feature-card i {
+    font-size: 40px;
+    color: #007bff;
+}
+
+.feature-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.feature-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    margin-bottom: 50px;
+}
+
+.testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.testimonial {
+    text-align: center;
+    flex: 0 0 calc(50% - 20px); /* Adjust testimonial width for responsiveness */
+    max-width: calc(50% - 20px); /* Adjust testimonial width for responsiveness */
+}
+
+.testimonial img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.testimonial p {
+    font-size: 16px;
+    color: #666;
+}
+
+.user-info {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Team Section */
+.team-section {
+    margin-bottom: 50px;
+}
+
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.team-member {
+    text-align: center;
+    flex: 0 0 calc(50% - 20px); /* Adjust team member width for responsiveness */
+    max-width: calc(50% - 20px); /* Adjust team member width for responsiveness */
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cta-text {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+.contact-info {
+    font-size: 16px;
+    color: #666;
+}
+
+/*footer*/
+footer{
+    background-color: #040c10;
+  }
+  footer h5,h3{
+    color: white;
+  }
+  footer li{
+    list-style-type: none;
+    color: rgba(245, 245, 245, 0.877);
+    padding-bottom: 0.8rem;
+  }
+  footer li a{
+    text-decoration: none;
+    color: rgba(245, 245, 245, 0.877);
+  }
+  .footer-sec{
+    color: rgba(245, 245, 245, 0.877);
+  }
+  .footer-hr{
+    color: rgba(245, 245, 245, 0.877);
+  }
+  .footer-brand{
+    font-weight: 600;
+  }
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .feature-card,
+    .testimonial,
+    .team-member {
+        flex-basis: calc(50% - 20px); /* Adjust width for smaller screens */
+        max-width: calc(50% - 20px); /* Adjust max-width for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .feature-card,
+    .testimonial,
+    .team-member {
+        flex-basis: 100%; /* Adjust width for even smaller screens */
+        max-width: 100%; /* Adjust max-width for even smaller screens */
+    }
+}
