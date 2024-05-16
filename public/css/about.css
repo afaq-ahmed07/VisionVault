@@ -76,149 +76,179 @@
 
 /* Header Section */
 .header-section {
-    text-align: center;
-    margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .title {
-    font-size: 36px;
-    font-weight: 600;
-    color: #333;
+  font-size: 36px;
+  font-weight: 600;
+  color: #007bff;
 }
 
 .intro {
-    font-size: 18px;
-    color: #666;
+  font-size: 18px;
+  color: #555;
 }
 
 /* Mission Section */
 .mission-section {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .section-title {
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #007bff;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .mission-text {
-    font-size: 16px;
-    color: #666;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
 }
 
 /* Features Section */
 .features-section {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .feature-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
 .feature-card {
-    text-align: center;
-    flex: 0 0 calc(33.33% - 20px); /* Adjust card width for responsiveness */
-    max-width: calc(33.33% - 20px); /* Adjust card width for responsiveness */
+  text-align: center;
+  flex: 0 0 calc(33.33% - 20px);
+  max-width: calc(33.33% - 20px);
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card i {
-    font-size: 40px;
-    color: #007bff;
+  font-size: 40px;
+  color: #007bff;
 }
 
 .feature-card h3 {
-    font-size: 18px;
-    color: #333;
-    margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+  margin-top: 20px;
 }
 
 .feature-card p {
-    font-size: 16px;
-    color: #666;
+  font-size: 16px;
+  color: #555;
 }
 
 /* Testimonials Section */
 .testimonials-section {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .testimonials {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
 .testimonial {
-    text-align: center;
-    flex: 0 0 calc(50% - 20px); /* Adjust testimonial width for responsiveness */
-    max-width: calc(50% - 20px); /* Adjust testimonial width for responsiveness */
+  text-align: center;
+  flex: 0 0 calc(50% - 20px);
+  max-width: calc(50% - 20px);
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
 }
 
 .testimonial p {
-    font-size: 16px;
-    color: #666;
+  font-size: 16px;
+  color: #555;
 }
 
 .user-info {
-    font-size: 14px;
-    color: #888;
+  font-size: 14px;
+  color: #888;
 }
 
 /* Team Section */
 .team-section {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .team-members {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
 .team-member {
-    text-align: center;
-    flex: 0 0 calc(50% - 20px); /* Adjust team member width for responsiveness */
-    max-width: calc(50% - 20px); /* Adjust team member width for responsiveness */
+  text-align: center;
+  flex: 0 0 calc(50% - 20px);
+  max-width: calc(50% - 20px);
 }
 
 .team-member img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* CTA Section */
 .cta-section {
-    text-align: center;
-    margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .cta-text {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 20px;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
 }
 
 
 .contact-info {
-    font-size: 16px;
-    color: #666;
+  font-size: 16px;
+  color: #555;
 }
+
+.contact-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
 
 /*footer*/
 footer{
@@ -248,19 +278,19 @@ footer{
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .feature-card,
-    .testimonial,
-    .team-member {
-        flex-basis: calc(50% - 20px); /* Adjust width for smaller screens */
-        max-width: calc(50% - 20px); /* Adjust max-width for smaller screens */
-    }
+  .feature-card,
+  .testimonial,
+  .team-member {
+      flex-basis: calc(50% - 20px);
+      max-width: calc(50% - 20px);
+  }
 }
 
 @media (max-width: 576px) {
-    .feature-card,
-    .testimonial,
-    .team-member {
-        flex-basis: 100%; /* Adjust width for even smaller screens */
-        max-width: 100%; /* Adjust max-width for even smaller screens */
-    }
+  .feature-card,
+  .testimonial,
+  .team-member {
+      flex-basis: 100%;
+      max-width: 100%;
+  }
 }
