@@ -87,6 +87,15 @@ document.addEventListener('DOMContentLoaded', function() {
 async function toggleLike(projectId) {
     const elementId = `likeCount${projectId}`;
     const likeCountElement = document.getElementById(elementId);
+
+    const likeIcon = document.getElementById('likeIcon');
+    likeIcon.classList.toggle('active'); // Toggles the 'active' class
+    
+    setTimeout(() => {
+        likeIcon.classList.remove('active'); // Removes the 'active' class after 0.5s (duration of animation)
+    }, 500); // Adjust the timeout value to match the duration of the animation
+    
+
     console.log(elementId);
     if (!likeCountElement) {
         console.error('Element not found:', elementId);
@@ -116,6 +125,14 @@ async function toggleLike(projectId) {
 
 // Function to save a project
 async function saveProject(projectId) {
+
+    document.getElementById('saveIcon').addEventListener('click', function() {
+        this.classList.toggle('active'); // Toggles the 'active' class
+        setTimeout(() => {
+            this.classList.remove('active'); // Removes the 'active' class after 0.5s (duration of animation)
+        }, 500); // Adjust the timeout value to match the duration of the animation
+    });
+    
     try {
         const response = await fetch('/save-project', {
             method: 'POST',
@@ -160,3 +177,8 @@ function showSuccessAlert(message) {
         text: message,
     });
 }
+
+/*wajee try */
+// document.getElementById('likeIcon').addEventListener('click', function() {
+//     this.classList.toggle('active');
+// });
