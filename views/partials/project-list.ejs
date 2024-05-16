@@ -1,42 +1,50 @@
 <% projects.forEach(project=> { %>
-    <div class="card border mb-3">
-        <img src="<%= project.images[0] %>" class="card-img-top card-img" alt="..." data-bs-toggle="modal"
-            data-bs-target="#cardModal" data-title="<%= project.title %>" data-desc="<%= project.desc %>"
-            data-images="<%= project.images.join(',') %>">
-        <div class="card-body">
-            <div class="card-info" data-bs-toggle="modal" data-bs-target="#cardModal" data-title="<%= project.title %>"
-                data-desc="<%= project.desc %>" data-images="<%= project.images.join(',') %>">
-                <h5 class="card-title">
-                    <%= project.title %>
-                </h5>
-                <p>
-                    <%= project.author %>
-                </p>
-            </div>
-            <div class="card-stats">
-                <span class="like-span">
-                    <% if (isLoggedIn) { %>
-                        <% if (!ismy) { %>
-                            <button type="button" class="btn save-btn" onclick="saveProject('<%= project._id %>')"><img
-                                    src="/img/save.svg" alt=""></button>
-                            <% } %>
+    <div class="col">
+        <div class="card border">
+            <img src="<%= project.images[0] %>" class="card-img-top card-img" alt="..." data-bs-toggle="modal"
+                data-bs-target="#cardModal" data-title="<%= project.title %>" data-desc="<%= project.desc %>"
+                data-images="<%= project.images.join(',') %>">
+            <div class="card-body">
+                <div class="card-info" data-bs-toggle="modal" data-bs-target="#cardModal"
+                    data-title="<%= project.title %>" data-desc="<%= project.desc %>"
+                    data-images="<%= project.images.join(',') %>">
+                    <h5 class="card-title">
+                        <%= project.title %>
+                    </h5>
+                    <p>
+                        <%= project.author %>
+                    </p>
+                </div>
+                <div class="card-stats">
+                    <span class="like-span">
+                        <% if (isLoggedIn) { %>
+                            <% if (ismy) { %>
+                                <button type="button" class="btn edit-btn"
+                                    onclick="editProject('<%= project._id %>')"><img src="/img/edit.svg"
+                                        alt="" class="edit-svg"></button>
                                 <% } %>
-                                    <img class="like-svg" src="/img/like.svg" alt="" <% if (isLoggedIn) { %>
-                                    onclick="toggleLike('<%= project._id %>')"
-                                        <% } %>>
+                                    <% } %>
+                                        <% if (isLoggedIn) { %>
+                                            <% if (!ismy) { %>
+                                                <button type="button" class="btn save-btn"
+                                                    onclick="saveProject('<%= project._id %>')"><img src="/img/save.svg"
+                                                        alt=""></button>
+                                                <% } %>
+                                                    <% } %>
+                                                        <img class="like-svg" src="/img/like.svg" alt="" <% if
+                                                            (isLoggedIn) { %>
+                                                        onclick="toggleLike('<%= project._id %>')"
+                                                            <% } %>>
 
-                                            <span class="like-count" id="likeCount<%= project._id %>"
-                                                style="user-select: none;" data-likes="<%= project.likes %>">
-                                                <%= project.likes %>
-                                            </span>
-                </span>
+                                                                <span class="like-count"
+                                                                    id="likeCount<%= project._id %>"
+                                                                    style="user-select: none;"
+                                                                    data-likes="<%= project.likes %>">
+                                                                    <%= project.likes %>
+                                                                </span>
+                    </span>
+                </div>
             </div>
-            <% if (isLoggedIn) { %>
-                <% if (ismy) { %>
-                    <button type="button" class="btn btn-primary edit-btn"
-                        onclick="editProject('<%= project._id %>')">Edit</button>
-                    <% } %>
-                        <% } %>
         </div>
     </div>
     <% }) %>

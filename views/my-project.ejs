@@ -17,15 +17,18 @@
 <body>
     <%- include('partials/navbar', { isLoggedIn: isLoggedIn, username: username }) %>
 
-        <div class="row pb-3">
-            <div class="col-lg-10 col-md-8 col-sm-8">
+        <div class="row mt-5 pb-3 row-cols-2 row-cols-md-2 row-cols-lg-2">
+            <div class="col">
                 <h1 class="project-head">Projects <span class="project-count">(<%= cards.length %>)</span>
                 </h1>
             </div>
             <% if (isLoggedIn) { %>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-flex">
-                    <button type="button" class="btn btn-primary align-self-end" id="add-button" data-bs-toggle="modal"
-                        data-bs-target="#project-modal"><img class="me-1" src="/img/add.svg" alt="">Add Project</button>
+                <div class="col">
+                    <div class="d-flex justify-content-end me-2">
+                        <button type="button" class="btn btn-primary" id="add-button" data-bs-toggle="modal"
+                            data-bs-target="#project-modal"><img class="me-1" src="/img/add.svg" alt="">Add
+                            Project</button>
+                    </div>
                 </div>
                 <% }%>
                     <!-- <hr class="hr-project mt-2"> -->
@@ -94,7 +97,8 @@
             </div>
         </div>
         <!--Project  Edit Modal -->
-        <div class="modal fade" id="project-edit-modal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal fade" id="project-edit-modal" tabindex="-1" aria-labelledby="projectModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -115,13 +119,14 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="saveProjectChanges()">Save changes</button>
+                        <button type="button" class="btn btn-primary" onclick="saveProjectChanges()">Save
+                            changes</button>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div id="searchResults" class="row m-2 d-flex">
+
+        <div id="searchResults" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
             <!-- Initial project cards will be rendered here -->
             <%- include('partials/project-list', { projects: cards, isLoggedIn:isLoggedIn,ismy:true }) %>
         </div>

@@ -277,6 +277,40 @@ footer{
   }
 
 /* Media Queries */
+@media (max-width: 992px) {
+  .search-bar-form{
+    width: 100%;
+  }
+  .search-icon{
+    position: relative;
+    left: 0.8rem;
+    z-index: 1;
+  }
+  .search-bar{
+    width: 20rem;
+    position: relative;
+    left: -1rem;
+    z-index: -1;
+    padding-left: 2rem;
+  }
+  .nav-user{
+    display: none;
+  }
+  .profile-dropdown{
+    position: absolute;
+    top: 4.8rem;
+  }
+  .search-bar-div{
+    width: 90%;
+    margin-left: 2.5rem;
+  }
+  .nav-link{
+    text-align: center;
+  }
+  .nav-pages:hover{
+    border-bottom: #ffffff;
+  }
+}
 @media (max-width: 768px) {
   .feature-card,
   .testimonial,

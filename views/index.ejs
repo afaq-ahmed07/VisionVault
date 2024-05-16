@@ -16,8 +16,8 @@
 
 <body>
     <%- include('partials/navbar', { isLoggedIn: isLoggedIn, username: username }) %>
-        <div class="row d-flex justify-content-evenly mt-5">
-            <div class="col-lg-8 col-md-12">
+        <div class="row mt-5 row-cols-1 row-cols-md-1 row-cols-lg-2">
+            <div class="col-lg">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <% carousel.images.forEach((item, index)=> { %>
@@ -37,24 +37,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 carousel-sib-div">
-                <% carousel_sib.forEach(item=> { %>
-                    <div class="row pb-3 carousel-sib-row">
-                        <img src="<%= item.images[0] %>" class="d-block carousel-sibling img-fluid" alt="...">
-                    </div>
-                    <% }) %>
+            <div class="col carousel-sib-div">
+                <div class="row pb-3  row-cols-2 row-cols-md-2 row-cols-lg-1 g-2">
+                    <% carousel_sib.forEach(item=> { %>
+                        <div class="col">
+                            <img src="<%= item.images[0] %>" class="d-block carousel-sibling img-fluid" alt="...">
+                        </div>
+                        <% }) %>
+                </div>
             </div>
         </div>
-        <div class="row mt-3 pb-3">
-            <div class="col-lg-10 col-md-8 col-sm-8">
+        <div class="row mt-5 pb-3 row-cols-2 row-cols-md-2 row-cols-lg-2">
+            <div class="col">
                 <h1 class="project-head">Projects <span class="project-count">(<%= cards.length %>)</span>
                 </h1>
             </div>
             <% if (isLoggedIn) { %>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-flex">
-                    <a href="/my-projects"><button type="button" class="btn btn-primary align-self-end"
-                            id="add-button"><img class="me-1" src="/img/add.svg" alt="">Add Project</button>
-                    </a>
+                <div class="col">
+                    <div class="d-flex justify-content-end me-2">
+                        <a href="/my-projects"><button type="button" class="btn btn-primary align-self-end"
+                                id="add-button"><img class="me-1" src="/img/add.svg" alt="">Add Project</button>
+                        </a>
+                    </div>
                 </div>
                 <% }%>
                     <!-- <hr class="hr-project mt-2"> -->
@@ -81,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <div id="searchResults" class="m-2 container-fluid">
+        <div id="searchResults" class="m-2 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
             <!-- Initial project cards will be rendered here -->
             <%- include('partials/project-list', { projects: cards, isLoggedIn: isLoggedIn, ismy: false }) %>
         </div>
