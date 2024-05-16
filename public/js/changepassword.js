@@ -2,7 +2,7 @@ function validateForm(formObject) {
     // Check if any field is empty
     for (const [key, value] of Object.entries(formObject)) {
         if (!value) {
-            alert(`${key} cannot be empty`);
+            showDangerAlert(`${key} cannot be empty`);
             return false;
         }
     }
@@ -11,11 +11,11 @@ function validateForm(formObject) {
     // Check password strength
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
     if (!passwordPattern.test(formObject.oldpass)) {
-        alert('wrong password');
+        showDangerAlert('invalid password');
         return false;
     }
     if (!passwordPattern.test(formObject.newpass)) {
-        alert('wrong password');
+        showDangerAlert('invalid password');
         return false;
     }
     return true;
@@ -46,15 +46,30 @@ async function changepassword(event) {
 
             if (response.ok) {
                 const message = await response.text();
-                alert("Password changed successfully.");
+                showSuccessAlert("Password changed successfully.");
                 window.location.href = "/";
             } else {
                 const error = await response.text();
-                alert(error);
+                showDangerAlert(error);
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred. Please try again.');
+            //alert('An error occurred. Please try again.');
         }
     }
  
+    function showDangerAlert(message) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+        });
+    }
+    
+    function showSuccessAlert(message) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: message,
+        });
+    }

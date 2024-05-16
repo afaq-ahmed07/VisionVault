@@ -126,9 +126,9 @@ async function saveProject(projectId) {
         });
 
         if (response.ok) {
-            alert('Project saved successfully!');
+            showSuccessAlert('Project saved successfully!');
         } else {
-            alert('Failed to save the project.');
+            showDangerAlert('Failed to save the project.');
         }
     } catch (error) {
         console.error('Error:', error);
@@ -143,4 +143,20 @@ function formatLikes(likes) {
     } else {
         return likes; // Return as-is for values below 1000
     }
+}
+
+function showDangerAlert(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+    });
+}
+
+function showSuccessAlert(message) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: message,
+    });
 }

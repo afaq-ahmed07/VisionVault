@@ -2,7 +2,7 @@ function validateForm(formObject) {
     // Check if any field is empty
     for (const [key, value] of Object.entries(formObject)) {
         if (!value) {
-            alert(`${key} cannot be empty`);
+            showDangerAlert(`${key} cannot be empty`);
             return false;
         }
     }
@@ -10,14 +10,14 @@ function validateForm(formObject) {
     // Check username length and character requirements
     const usernamePattern = /^[A-Za-z]{4,}$/;
     if (!usernamePattern.test(formObject.username)) {
-        alert('Username must be at least 4 characters long and contain only alphabets');
+        showDangerAlert('Username must be at least 4 characters long and contain only alphabets');
         return false;
     }
 
     // Check email format
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(formObject.email)) {
-        alert('Invalid email format');
+        showDangerAlert('Invalid email format');
         return false;
     }
 
@@ -51,7 +51,7 @@ async function forgetpassword(event) {
 
             if (response.ok) {
                 const message = await response.text();
-                alert("Password reset successful. Please check your email for the new password.");
+                showSuccessAlert("Password reset successful. Please check your email for the new password.");
                 window.location.href = "/signin";
             } else {
                 const error = await response.text();
@@ -63,3 +63,18 @@ async function forgetpassword(event) {
         }
     }
  
+    function showDangerAlert(message) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+        });
+    }
+    
+    function showSuccessAlert(message) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: message,
+        });
+    }
