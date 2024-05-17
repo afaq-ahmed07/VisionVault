@@ -6,11 +6,12 @@ const authenticateToken = require('../middlewares/auth');
 const cookieParser = require('cookie-parser');
 const searchRouter = require('../routes/search');
 const saveProjectRouter = require('../routes/saveproject');
-const likeRouter=require('../routes/like');
+const likeRouter = require('../routes/like');
 const myProjectRouter = require('../routes/my-project');
 const savedProjectRouter = require('../routes/saved-project');
 const editProjectRouter = require('../routes/edit-project');
-const removeProjectRouter= require('../routes/project-remove')
+const removeProjectRouter = require('../routes/project-remove')
+const hireAuthor=require('../routes/hireauthor');
 
 // const carousel = [
 //     { src: "/img/interior.jpg" },
@@ -31,21 +32,22 @@ router.use('/saved-projects', savedProjectRouter);
 
 router.use('/projects', projectController);
 router.use('/search', searchRouter);
-router.use('/save-project',saveProjectRouter);
+router.use('/save-project', saveProjectRouter);
 router.use('/like-project', likeRouter);
 router.use(editProjectRouter);
-router.use('/project-remove',removeProjectRouter);
+router.use('/project-remove', removeProjectRouter);
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 router.use(cookieParser()); // Use cookie-parser middleware
 router.use(authenticateToken); // Use authenticateToken middleware
+router.use(hireAuthor);
 
 router.get('/', async (req, res) => {
     try {
         const query = req.query.query; // Get the search query from the request
         let projects = await Project.find();
-        
+
         if (query) {
             // Filter projects based on the search query
             projects = projects.filter(project =>
@@ -60,8 +62,8 @@ router.get('/', async (req, res) => {
         res.render('index', {
             pageTitle: 'Home',
             cards: projects,
-            carousel: topProject,
-            carousel_sib: sec_third_project,
+            carousel: topProject ? topProject : null,
+            carousel_sib: sec_third_project ? sec_third_project : null,
             isLoggedIn: req.user ? true : false,
             username: req.user ? req.user.username : null
         });

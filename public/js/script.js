@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTriggerElements = document.querySelectorAll('.card-img, .card-info');
 
     modalTriggerElements.forEach(element => {
-        element.addEventListener('click', function(event) {
+        element.addEventListener('click', function (event) {
             const title = this.getAttribute('data-title');
             const desc = this.getAttribute('data-desc');
             const images = this.getAttribute('data-images').split(',');
@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 //     window.location.href = '/signin';
 // });
 
-function signinPage(){
+function signinPage() {
     window.location.href = '/signin';
 }
-function signupPage(){
+function signupPage() {
     window.location.href = '/signup';
 }
 
@@ -54,24 +54,24 @@ SignButton.addEventListener('click', () => {
     window.location.href = '/signup';
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
 
-    searchForm.addEventListener('submit', function(event) {
+    searchForm.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent the default form submission
 
         const query = searchInput.value;
         if (query === "") {
             window.location.href = "/";
-        } 
+        }
         else {
-        fetch(`/search?query=${encodeURIComponent(query)}`)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('searchResults').innerHTML = data;
-            })
-            .catch(error => console.error('Error:', error));
+            fetch(`/search?query=${encodeURIComponent(query)}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('searchResults').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
         }
     });
 
@@ -90,11 +90,11 @@ async function toggleLike(projectId) {
 
     const likeIcon = document.getElementById('likeIcon');
     likeIcon.classList.toggle('active'); // Toggles the 'active' class
-    
+
     setTimeout(() => {
         likeIcon.classList.remove('active'); // Removes the 'active' class after 0.5s (duration of animation)
     }, 500); // Adjust the timeout value to match the duration of the animation
-    
+
 
     console.log(elementId);
     if (!likeCountElement) {
@@ -126,13 +126,13 @@ async function toggleLike(projectId) {
 // Function to save a project
 async function saveProject(projectId) {
 
-    document.getElementById('saveIcon').addEventListener('click', function() {
+    document.getElementById('saveIcon').addEventListener('click', function () {
         this.classList.toggle('active'); // Toggles the 'active' class
         setTimeout(() => {
             this.classList.remove('active'); // Removes the 'active' class after 0.5s (duration of animation)
         }, 500); // Adjust the timeout value to match the duration of the animation
     });
-    
+
     try {
         const response = await fetch('/save-project', {
             method: 'POST',
@@ -185,18 +185,40 @@ function removeProject(projectId) {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Project removed successfully!');
-            document.getElementById(`project-${projectId}`).remove();
-        } else {
-            alert('Failed to remove the project: ' + data.message);
-        }
-    })
-    .catch(error => console.error('Error removing project:', error));
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Project removed successfully!');
+                document.getElementById(`project-${projectId}`).remove();
+            } else {
+                alert('Failed to remove the project: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error removing project:', error));
 }
 /*wajee try */
 // document.getElementById('likeIcon').addEventListener('click', function() {
 //     this.classList.toggle('active');
 // });
+
+function hireAuthor(projectId) {
+    fetch(`/hireauthor/${projectId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const authorEmail = data.email;
+                const subject = 'Hiring Inquiry';
+                const body = 'Hi, I am interested in hiring you for a project. Please get back to me with more details.';
+                window.location.href = `mailto:${authorEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            } else {
+                alert('Failed to retrieve author details: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error fetching author details:', error));
+}
+

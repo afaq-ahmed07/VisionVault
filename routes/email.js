@@ -1,7 +1,7 @@
 // /routes/email.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); // Adjust the path as necessary
+const User = require('../models/user'); // Adjust the path as necessary
 
 // In-memory store for unverified users
 let tempUserStore = {};

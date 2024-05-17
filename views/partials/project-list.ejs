@@ -26,21 +26,23 @@
                                     <% } %>
                                         <% if (isLoggedIn) { %>
                                             <% if (!ismy) { %>
-                                                <button type="button" class="btn save-btn" onclick="saveProject('<%= project._id %>')">
+                                                <button type="button" class="btn save-btn"
+                                                    onclick="saveProject('<%= project._id %>')">
                                                     <i class="far fa-bookmark save-icon" id="saveIcon"></i>
                                                 </button>
                                                 <% } %>
                                                     <% } %>
                                                         <!-- <img class="like-svg" src="/img/like.svg" alt=""> -->
-                                                        <i class="fas fa-thumbs-up like-icon" id="likeIcon" <% if (isLoggedIn) { %> onclick="toggleLike('<%= project._id %>')" <% } %>></i>
+                                                        <i class="fas fa-thumbs-up like-icon" id="likeIcon" <% if
+                                                            (isLoggedIn) { %> onclick="toggleLike('<%= project._id %>')"
+                                                                <% } %>></i>
 
 
-                                                                <span class="like-count"
-                                                                    id="likeCount<%= project._id %>"
-                                                                    style="user-select: none;"
-                                                                    data-likes="<%= project.likes %>">
-                                                                    <%= project.likes %>
-                                                                </span>
+                                                        <span class="like-count" id="likeCount<%= project._id %>"
+                                                            style="user-select: none;"
+                                                            data-likes="<%= project.likes %>">
+                                                            <%= project.likes %>
+                                                        </span>
                     </span>
                 </div>
                 <% if (isLoggedIn) { %>
@@ -48,7 +50,11 @@
                         <button type="button" class="btn btn-primary remove-btn"
                             onclick="removeProject('<%= project._id %>')">Remove</button>
                         <% } %>
-                            <% } %>
+                            <% if (!ismy) { %>
+                                <button type="button" class="btn btn-primary hire-btn"
+                                    onclick="hireAuthor('<%= project._id %>')">Hire me</button>
+                                <% } %>
+                                    <% } %>
             </div>
         </div>
     </div>

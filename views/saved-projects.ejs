@@ -37,10 +37,10 @@
                                 <!-- Images will be dynamically added here -->
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <!-- <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -76,9 +76,11 @@
                                     </span>
                                 </div>
                                 <% if (isLoggedIn) { %>
-                                        <button type="button" class="btn btn-primary remove-btn"
-                                            onclick="removeProject('<%= project._id %>')">Remove</button>           
-                                            <% } %>
+                                    <button type="button" class="btn btn-primary remove-btn"
+                                        onclick="removeProject('<%= project._id %>')">Remove</button>
+                                    <button type="button" class="btn btn-primary hire-btn"
+                                        onclick="hireAuthor('<%= project._id %>')">Hire me</button>
+                                    <% } %>
                             </div>
                         </div>
                     </div>

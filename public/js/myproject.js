@@ -2,7 +2,7 @@ function uploadProject() {
     const title = document.getElementById('project-title-field').value;
     const desc = document.getElementById('project-desc-field').value;
     const images = document.getElementById('project-images').files;
-    const allowedExtensions = /(\.jpg|\.png)$/i;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
     if (images.length < 3 || images.length > 3) {
         showDangerAlert('Upload 3 files to Continue.');
         return;
@@ -11,7 +11,8 @@ function uploadProject() {
     for (let i = 0; i < images.length; i++) {
         // Client-side validation for file type
         if (!allowedExtensions.exec(images[i].name)) {
-            showDangerAlert('Invalid file type. Only JPG and PNG are allowed.');
+            console.log("function");
+            showDangerAlert('Invalid file type. Only JPG/JPEG and PNG are allowed.');
             return;
         }
 
@@ -29,7 +30,6 @@ function uploadProject() {
         formData.append('projectImages', images[i]);
     }
 
-    // Send AJAX request to backend
     fetch('/projects', {
         method: 'POST',
         body: formData
@@ -47,7 +47,7 @@ function uploadProject() {
             console.log(data);
             const closeButton = document.querySelector('#project-modal .btn-close');
             closeButton.click(); // Close the modal
-            showSuccessAlert("Project added Successfully");
+           // showSuccessAlert("Project added Successfully");
         })
         .catch(error => {
             console.error('Error:', error);
@@ -65,7 +65,8 @@ form.addEventListener("click", () => {
 
 fileInput.onchange = (event) => {
     const files = event.target.files;
-    const allowedExtensions = /(\.jpg|\.png)$/i;
+    let file_bool=false;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
     uploadArea.style.display = "block";
     if (files.length==3){
     Array.from(files).forEach((file) => {
@@ -73,11 +74,12 @@ fileInput.onchange = (event) => {
         const fileSize = file.size;
         Array.from(files).forEach((file) => {
             if (!allowedExtensions.test(file.name)) {
-                showDangerAlert('Invalid file type. Only JPG and PNG are allowed.');
+                console.log("file_bool");
+                file_bool=true;
                 return;
             }
         });
-        if (allowedExtensions.test(fileName)) {
+        if (allowedExtensions.test(fileName) && !file_bool) {
             const uploadHTML = `
                 <li class="file-li d-flex justify-content-between">
                     <div class="content">
@@ -91,7 +93,7 @@ fileInput.onchange = (event) => {
                 </li>`;
             uploadArea.insertAdjacentHTML('afterbegin', uploadHTML);
         } else {
-            showDangerAlert('Invalid file type. Only JPG and PNG are allowed.');
+            showDangerAlert('Invalid file type. Only JPG\JPEG and PNG are allowed.');
         }
     });
 }
