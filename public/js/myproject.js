@@ -2,7 +2,19 @@ function uploadProject() {
     const title = document.getElementById('project-title-field').value;
     const desc = document.getElementById('project-desc-field').value;
     const images = document.getElementById('project-images').files;
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.avif)$/i;
+
+    let titleInput = document.getElementById("project-title-field").value;
+    let descInput= document.getElementById("project-desc-field").value;
+    if (descInput.trim() === "" || titleInput.trim() === "") {
+        showDangerAlert('Title and Description cannot be Empty.');
+        return;
+    }
+
+    if (titleInput.length > 30) {
+        showDangerAlert('Title cannot exceed 30 characters.');
+        return;
+    }
     if (images.length < 3 || images.length > 3) {
         showDangerAlert('Upload 3 files to Continue.');
         return;
@@ -36,7 +48,9 @@ function uploadProject() {
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = '/my-projects'; // Redirect to the home page on success
+                showSuccessAlert("Project Added Successfully",() => {
+                window.location.href = '/';// Redirect to the home page on success
+                });
             } else {
                 return response.json().then(data => {
                     throw new Error(data.message || 'Failed to add project');
@@ -47,7 +61,6 @@ function uploadProject() {
             console.log(data);
             const closeButton = document.querySelector('#project-modal .btn-close');
             closeButton.click(); // Close the modal
-           // showSuccessAlert("Project added Successfully");
         })
         .catch(error => {
             console.error('Error:', error);
@@ -66,7 +79,7 @@ form.addEventListener("click", () => {
 fileInput.onchange = (event) => {
     const files = event.target.files;
     let file_bool=false;
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.avif)$/i;
     uploadArea.style.display = "block";
     if (files.length==3){
     Array.from(files).forEach((file) => {
@@ -272,11 +285,13 @@ function showDangerAlert(message) {
     });
 }
 
-function showSuccessAlert(message) {
+function showSuccessAlert(message, callback) {
     Swal.fire({
         icon: 'success',
         title: 'Success!',
         text: message,
+    }).then(() => {
+        callback(); // Execute the callback after the alert is dismissed
     });
 }
 

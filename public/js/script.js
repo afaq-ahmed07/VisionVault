@@ -1,3 +1,117 @@
+function uploadProject() {
+    const title = document.getElementById('project-title-field').value;
+    const desc = document.getElementById('project-desc-field').value;
+    const images = document.getElementById('project-images').files;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.avif)$/i;
+
+    let titleInput = document.getElementById("project-title-field").value;
+    let descInput= document.getElementById("project-desc-field").value;
+    if (descInput.trim() === "" || titleInput.trim() === "") {
+        showDangerAlert('Title and Description cannot be Empty.');
+        return;
+    }
+
+    if (titleInput.length > 30) {
+        showDangerAlert('Title cannot exceed 30 characters.');
+        return false;
+    }
+    if (images.length < 3 || images.length > 3) {
+        showDangerAlert('Upload 3 files to Continue.');
+        return;
+    }
+
+    for (let i = 0; i < images.length; i++) {
+        // Client-side validation for file type
+        if (!allowedExtensions.exec(images[i].name)) {
+            console.log("function");
+            showDangerAlert('Invalid file type. Only JPG/JPEG and PNG are allowed.');
+            return;
+        }
+
+        // Client-side validation for file size
+        if (images[i].size > 5 * 1024 * 1024) { // 5MB
+            showDangerAlert('File size should not exceed 5MB.');
+            return;
+        }
+    }
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('desc', desc);
+    for (let i = 0; i < images.length; i++) {
+        formData.append('projectImages', images[i]);
+    }
+
+    fetch('/projects', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => {
+            if (response.ok) {
+                showSuccessAlert("Project Added Successfully",() => {
+                window.location.href = '/';// Redirect to the home page on success
+                });
+            
+            } else {
+                return response.json().then(data => {
+                    throw new Error(data.message || 'Failed to add project');
+                });
+            }
+        })
+        .then(data => {
+            const closeButton = document.querySelector('#project-modal .btn-close');
+            closeButton.click(); // Close the modal
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            //showSuccessAlert('Failed to add project');
+        });
+}
+
+const form = document.querySelector('.img-form');
+fileInput = form.querySelector('.file-input');
+uploadArea = document.querySelector('.upload-area');
+uploadArea.style.display = "none";
+form.addEventListener("click", () => {
+    fileInput.click();
+});
+
+fileInput.onchange = (event) => {
+    const files = event.target.files;
+    let file_bool=false;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.avif)$/i;
+    uploadArea.style.display = "block";
+    if (files.length==3){
+    Array.from(files).forEach((file) => {
+        const fileName = file.name;
+        const fileSize = file.size;
+        Array.from(files).forEach((file) => {
+            if (!allowedExtensions.test(file.name)) {
+                console.log("file_bool");
+                file_bool=true;
+                return;
+            }
+        });
+        if (allowedExtensions.test(fileName) && !file_bool) {
+            const uploadHTML = `
+                <li class="file-li d-flex justify-content-between">
+                    <div class="content">
+                        <img class="fa-file" src="/img/file.svg" alt="File.svg">
+                        <div class="details">
+                            <span class="name">${fileName} . Uploaded</span>
+                            <span class="size">${(fileSize / 1024).toFixed(2)} Kb</span>
+                        </div>
+                    </div>
+                    <img class="fa-check" src="/img/check.svg" alt="check.svg">
+                </li>`;
+            uploadArea.insertAdjacentHTML('afterbegin', uploadHTML);
+        } else {
+            showDangerAlert('Invalid file type. Only JPG\JPEG and PNG are allowed.');
+        }
+    });
+}
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const cardModal = document.getElementById('cardModal');
     const modalTriggerElements = document.querySelectorAll('.card-img, .card-info');
@@ -169,11 +283,13 @@ function showDangerAlert(message) {
     });
 }
 
-function showSuccessAlert(message) {
+function showSuccessAlert(message, callback) {
     Swal.fire({
         icon: 'success',
         title: 'Success!',
         text: message,
+    }).then(() => {
+        callback(); // Execute the callback after the alert is dismissed
     });
 }
 function confirmDeletion(callback) {
