@@ -86,7 +86,7 @@
 .title {
   font-size: 36px;
   font-weight: 600;
-  color: #007bff;
+  color:black;
 }
 
 .intro {
@@ -105,7 +105,7 @@
 .section-title {
   font-size: 28px;
   font-weight: 600;
-  color: #007bff;
+  color: black;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -140,7 +140,7 @@
 
 .feature-card i {
   font-size: 40px;
-  color: #007bff;
+  color:#007bff;
 }
 
 .feature-card h3 {
@@ -241,7 +241,7 @@
 }
 
 .contact-info a {
-  color: #007bff;
+  color: black;
   text-decoration: none;
 }
 

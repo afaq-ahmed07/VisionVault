@@ -8,8 +8,14 @@ const cookieParser = require('cookie-parser');
 router.use(cookieParser());
 router.use(authenticateToken);
 
+
 // Route to get a specific project's details
 router.get('/editprojects/:id', async (req, res) => {
+
+    if (!req.user) {
+        return res.redirect('/error');
+      }
+
     try {
         const project = await Project.findById(req.params.id);
         if (project) {

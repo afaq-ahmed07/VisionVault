@@ -15,6 +15,8 @@ const homeRouter = require('./routes/home');
 const aboutRouter = require('./routes/about');
 const logoutRouter = require('./routes/logout');
 const changepasswordRouter = require('./routes/changepassword');
+const errorRouter = require('./routes/error');
+
 
 
 
@@ -43,6 +45,7 @@ app.use('/forgetpassword',forgetpasswordRouter)
 app.use('/about',aboutRouter)
 app.use('/logout',logoutRouter)
 app.use('/changepassword',changepasswordRouter)
+app.use('/error',errorRouter)
 
 // Start the server
 const PORT = process.env.PORT || 3000;

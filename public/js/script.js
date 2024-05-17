@@ -84,16 +84,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-async function toggleLike(projectId) {
+async function toggleLike(projectId,element) {
     const elementId = `likeCount${projectId}`;
     const likeCountElement = document.getElementById(elementId);
 
-    const likeIcon = document.getElementById('likeIcon');
-    likeIcon.classList.toggle('active'); // Toggles the 'active' class
+   // Toggles the 'active' class on the clicked element
+   element.classList.toggle('active');
     
-    setTimeout(() => {
-        likeIcon.classList.remove('active'); // Removes the 'active' class after 0.5s (duration of animation)
-    }, 500); // Adjust the timeout value to match the duration of the animation
+   // Removes the 'active' class after 0.5s (duration of animation)
+   setTimeout(() => {
+       element.classList.remove('active');
+   }, 500); // Adjust the timeout value to match the duration of the animation
     
 
     console.log(elementId);
@@ -124,7 +125,7 @@ async function toggleLike(projectId) {
 }
 
 // Function to save a project
-async function saveProject(projectId) {
+async function saveProject(projectId,element) {
 
     document.getElementById('saveIcon').addEventListener('click', function() {
         this.classList.toggle('active'); // Toggles the 'active' class
@@ -178,23 +179,53 @@ function showSuccessAlert(message) {
     });
 }
 
+function confirmDeletion(callback) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            callback();
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            );
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire(
+                'Cancelled',
+                'Your file is safe :)',
+                'error'
+            );
+        }
+    });
+}
+
 function removeProject(projectId) {
-    fetch(`/project-remove/${projectId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Project removed successfully!');
-            document.getElementById(`project-${projectId}`).remove();
-        } else {
-            alert('Failed to remove the project: ' + data.message);
-        }
-    })
-    .catch(error => console.error('Error removing project:', error));
+    confirmDeletion(() => {
+        fetch(`/project-remove/${projectId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showSuccessAlert('Project removed successfully!');
+                document.getElementById(`project-${projectId}`).remove();
+            } else {
+                alert('Failed to remove the project: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error removing project:', error));
+    });
 }
 /*wajee try */
 // document.getElementById('likeIcon').addEventListener('click', function() {
