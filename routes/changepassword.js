@@ -3,8 +3,15 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
+const authenticateToken = require('../middlewares/auth');
+// Apply the authenticateToken middleware to the entire route
+router.use(authenticateToken);
+
 router.get('/', (req, res) => {
-    res.render('changepassword');
+  if (!req.user) {
+    return res.redirect('/error');
+  }
+  res.render('changepassword');
 });
 
 router.post('/', async (req, res) => {

@@ -19,9 +19,9 @@
                     <span class="like-span">
                         <% if (isLoggedIn) { %>
                             <% if (ismy) { %>
-                                <button type="button" class="btn edit-btn"
-                                    onclick="editProject('<%= project._id %>')"><img src="/img/edit.svg" alt=""
-                                        class="edit-svg"></button>
+                                <button type="button" class="btn edit-btn"onclick="editProject('<%= project._id %>')">
+                                    <i class="fas fa-edit edit-icon" id="editIcon"></i>
+                                        </button>
                                 <% } %>
                                     <% } %>
                                         <% if (isLoggedIn) { %>
@@ -33,9 +33,7 @@
                                                 <% } %>
                                                     <% } %>
                                                         <!-- <img class="like-svg" src="/img/like.svg" alt=""> -->
-                                                        <i class="fas fa-thumbs-up like-icon" id="likeIcon" <% if
-                                                            (isLoggedIn) { %> onclick="toggleLike('<%= project._id %>')"
-                                                                <% } %>></i>
+                                                        <i class="fas fa-thumbs-up like-icon" <% if (isLoggedIn) { %> onclick="toggleLike('<%= project._id %>', this)" <% } %>></i>
 
 
                                                         <span class="like-count" id="likeCount<%= project._id %>"

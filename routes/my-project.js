@@ -6,6 +6,9 @@ const Project = require('../models/projects');
 router.use(cookieParser()); // Use cookie-parser middleware
 router.use(authenticateToken);
 router.get('/',async (req, res) => {
+    if (!req.user) {
+        return res.redirect('/error');
+      }
     try {
         const query = req.query.query; // Get the search query from the request
         const username = req.user.username; // Get the username from the authenticated user
