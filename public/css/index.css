@@ -208,6 +208,39 @@ footer li a{
   position: relative;
   top: -3px;
 }
+/*wajee try*/
+@keyframes popUp {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.like-icon {
+  font-size: 24px;
+  color: gray;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+.like-icon.active {
+  animation: popUp 0.5s ease;
+}
+@keyframes popUp {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.save-icon {
+  font-size: 24px;
+  color: gray;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.save-icon.active {
+  animation: popUp 0.5s ease;
+}
+/**/
 @media (max-width: 992px) {
   .log-sign-li{
     padding-top: 1rem;
