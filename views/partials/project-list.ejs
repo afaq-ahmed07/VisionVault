@@ -1,6 +1,6 @@
 <% projects.forEach(project=> { %>
     <div class="col">
-        <div class="card border">
+        <div class="card border" id="project-<%= project._id %>">
             <img src="<%= project.images[0] %>" class="card-img-top card-img" alt="..." data-bs-toggle="modal"
                 data-bs-target="#cardModal" data-title="<%= project.title %>" data-desc="<%= project.desc %>"
                 data-images="<%= project.images.join(',') %>">
@@ -20,8 +20,8 @@
                         <% if (isLoggedIn) { %>
                             <% if (ismy) { %>
                                 <button type="button" class="btn edit-btn"
-                                    onclick="editProject('<%= project._id %>')"><img src="/img/edit.svg"
-                                        alt="" class="edit-svg"></button>
+                                    onclick="editProject('<%= project._id %>')"><img src="/img/edit.svg" alt=""
+                                        class="edit-svg"></button>
                                 <% } %>
                                     <% } %>
                                         <% if (isLoggedIn) { %>
@@ -43,6 +43,12 @@
                                                                 </span>
                     </span>
                 </div>
+                <% if (isLoggedIn) { %>
+                    <% if (ismy) { %>
+                        <button type="button" class="btn btn-primary remove-btn"
+                            onclick="removeProject('<%= project._id %>')">Remove</button>
+                        <% } %>
+                            <% } %>
             </div>
         </div>
     </div>

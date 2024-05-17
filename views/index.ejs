@@ -17,14 +17,14 @@
 
 <body>
     <%- include('partials/navbar', { isLoggedIn: isLoggedIn, username: username }) %>
-        <div class="row mt-5 row-cols-1 row-cols-md-1 row-cols-lg-2">
-            <div class="col-lg">
+        <div class="row mt-5 d-flex flex-wrap">
+            <div class="col-lg-7">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <% carousel.images.forEach((item, index)=> { %>
                             <button type="button" data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to="<%= index %>"
-                                class="<%= index === 0 ? 'active bg-dark' : 'bg-dark' %>"
+                                class="<%= index === 0 ? 'active bg-primary' : 'bg-primary' %>"
                                 aria-current="<%= index === 0 ? 'true' : 'false' %>"
                                 aria-label="Slide <%= index + 1 %>"></button>
                             <% }); %>
@@ -38,8 +38,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col carousel-sib-div">
-                <div class="row pb-3  row-cols-2 row-cols-md-2 row-cols-lg-1 g-2">
+            <div class="col-lg-5 carousel-sib-div">
+                <div class="row pb-3  row-cols-2 row-cols-md-2 row-cols-lg-1 g-3">
                     <% carousel_sib.forEach(item=> { %>
                         <div class="col">
                             <img src="<%= item.images[0] %>" class="d-block carousel-sibling img-fluid" alt="...">

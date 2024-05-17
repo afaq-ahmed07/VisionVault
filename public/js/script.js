@@ -178,6 +178,24 @@ function showSuccessAlert(message) {
     });
 }
 
+function removeProject(projectId) {
+    fetch(`/project-remove/${projectId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Project removed successfully!');
+            document.getElementById(`project-${projectId}`).remove();
+        } else {
+            alert('Failed to remove the project: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error removing project:', error));
+}
 /*wajee try */
 // document.getElementById('likeIcon').addEventListener('click', function() {
 //     this.classList.toggle('active');
