@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const { getTempUserStore } = require('./email'); // Import the function to get tempUserStore
-const User = require('../models/User'); // Adjust the path as necessary
+const User = require('../models/user'); // Adjust the path as necessary
 
 // Utilize the tempUserStore from email route
 const tempUserStore = getTempUserStore();
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
             username,
             email,
             password: hashedPassword,
-            verificationTokenExpiry: Date.now() + 3600000, // 1 hour expiry
+            verificationTokenExpiry: Date.now() + 360000000, // 1 hour expiry
         };
 
         // Send verification email

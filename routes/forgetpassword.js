@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const User = require('../models/User'); // Adjust the path as necessary
+const User = require('../models/user'); // Adjust the path as necessary
 
 // Generate a random password with at least one alphabet and one digit
 function generateRandomPassword() {

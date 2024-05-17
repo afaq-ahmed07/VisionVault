@@ -69,19 +69,19 @@
   position: relative;
   left: 2rem;
 }
-/* .carousel{
-  min-width: 780px;
-  border: 2px solid black;
+ .carousel{
+  width: 780px;
+  /* border: 2px solid black; */
 }
 .carousel-inner{
   width: 780px;
   height: 415px;
 }
-.carousel-item{
+/* .carousel-item{
   height: 415px;
 } */
 .carousel-item .img{
-  width: 100%;
+  width: 780px;
   height: 415px;
   object-fit: cover;
 }

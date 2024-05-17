@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path'); // Import the path module
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User = require('../models/User'); // Adjust the path as necessary
+const User = require('../models/user'); // Adjust the path as necessary
 
 router.post("/", async (req, res) => {
     const { username, password } = req.body;
