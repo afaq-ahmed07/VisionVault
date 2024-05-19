@@ -18,7 +18,7 @@
 <body>
     <%- include('partials/navbar', { isLoggedIn: isLoggedIn, username: username }) %>
         <div class="row mt-5 d-flex flex-wrap">
-            <div class="col-lg-7 ms-4">
+            <div class="col-lg-7 carousel-div ms-4">
                 <div id="carouselExampleAutoplaying" class="carousel slide border border-secondary" data-bs-ride="carousel">
                     <% if (carousel) { %>
                         <div class="carousel-indicators">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <% if (carousel_sib) { %>
-                <div class="col-lg-4 carousel-sib-div ms-5">
+                <div class="col-lg-4  carousel-sib-div ms-5">
                     <div class="row pt-2 row-cols-1 row-cols-md-2 row-cols-lg-1 g-4 carousel-sib ">
                         <% carousel_sib.forEach(item=> { %>
                             <div class="col">

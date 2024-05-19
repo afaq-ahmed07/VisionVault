@@ -38,8 +38,7 @@ router.get('/verify-email', async (req, res) => {
         // Remove user from temporary storage
         delete tempUserStore[token];
 
-         // Redirect to the sign-in page
-        res.redirect('/signin?closed=true');
+        res.send('sucessfully done');
 
     } catch (error) {
         console.error('Error verifying email:', error);
