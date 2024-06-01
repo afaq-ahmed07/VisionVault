@@ -70,28 +70,28 @@
   left: 2rem;
 }
  .carousel{
-  width: 780px;
+  width: 850px;
   /* border: 2px solid black; */
-}
-.carousel-inner{
-  width: 780px;
+ }
+/* .carousel-inner{
+  width: 850px;
   height: 415px;
-}
+} */
 /* .carousel-item{
   height: 415px;
 } */
-.carousel-item .img{
-  width: 780px;
-  height: 415px;
+.carousel-item img{
+  width: 850px;
+  height: 500px;
   object-fit: cover;
 }
 /* .carousel-sib-div{
   width: fit-content; 
 } */
-.carousel-sibling{
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.carousel-sib img{
+    width: 880px;
+    height: 230px;
+    object-fit: fill;
 }
 .project-head{
   font-size: 1.5rem;
@@ -258,15 +258,48 @@ footer li a{
 .edit-icon.active {
   animation: popUp 0.5s ease;
 }
-
+@media (max-width: 1500px) {
+  .carousel-div{
+    width: 100%;
+  }
+  .log-sign-li{
+    padding-top: 1rem;
+    
+  }
+  .login{
+    margin-left: 3rem;
+  }
+  .signup{
+    margin-left: 1.8rem;
+  }
+}
+@media (max-width: 1200px) {
+  .carousel-div{
+    width: 100%;
+  }
+  .log-sign-li{
+    padding-top: 1rem;
+    
+  }
+  .login{
+    margin-left: 3rem;
+  }
+  .signup{
+    margin-left: 1.8rem;
+  }
+}
 
 /**/
 @media (max-width: 992px) {
   .log-sign-li{
     padding-top: 1rem;
+    
   }
   .login{
-    margin-right: 1rem;
+    margin-left: 3rem;
+  }
+  .signup{
+    margin-left: 1.8rem;
   }
   .search-bar-form{
     width: 100%;

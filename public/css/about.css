@@ -277,7 +277,45 @@ footer{
   }
 
 /* Media Queries */
+
+@media (max-width: 1500px) {
+  .log-sign-li{
+    padding-top: 1rem;
+    
+  }
+  .login{
+    margin-left: 3rem;
+  }
+  .signup{
+    margin-left: 1.8rem;
+  }
+}
+@media (max-width: 1200px) {
+  .log-sign-li{
+    padding-top: 1rem;
+    
+  }
+  .login{
+    margin-left: 3rem;
+  }
+  .signup{
+    margin-left: 1.8rem;
+  }
+}
 @media (max-width: 992px) {
+  .log-sign-li{
+    padding-top: 1rem;
+    
+  }
+  .login{
+    margin-left: 3rem;
+  }
+  .signup{
+    margin-left: 1.8rem;
+  }
+  .search-bar-form{
+    width: 100%;
+  }
   .search-bar-form{
     width: 100%;
   }

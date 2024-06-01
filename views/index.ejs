@@ -18,14 +18,14 @@
 <body>
     <%- include('partials/navbar', { isLoggedIn: isLoggedIn, username: username }) %>
         <div class="row mt-5 d-flex flex-wrap">
-            <div class="col-lg-7 ms-2">
-                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="col-lg-7 carousel-div ms-4">
+                <div id="carouselExampleAutoplaying" class="carousel slide border border-secondary" data-bs-ride="carousel">
                     <% if (carousel) { %>
                         <div class="carousel-indicators">
                             <% carousel.images.forEach((item, index)=> { %>
                                 <button type="button" data-bs-target="#carouselExampleCaptions"
                                     data-bs-slide-to="<%= index %>"
-                                    class="<%= index === 0 ? 'active bg-primary' : 'bg-primary' %>"
+                                    class="<%= index === 0 ? 'active bg-dark' : 'bg-dark' %>"
                                     aria-current="<%= index === 0 ? 'true' : 'false' %>"
                                     aria-label="Slide <%= index + 1 %>"></button>
                                 <% }); %>
@@ -41,11 +41,11 @@
                 </div>
             </div>
             <% if (carousel_sib) { %>
-                <div class="col-lg-4 carousel-sib-div ms-5">
-                    <div class="row pb-3 row-cols-2 row-cols-md-2 row-cols-lg-1 g-3">
+                <div class="col-lg-4  carousel-sib-div ms-5">
+                    <div class="row pt-2 row-cols-1 row-cols-md-2 row-cols-lg-1 g-4 carousel-sib ">
                         <% carousel_sib.forEach(item=> { %>
                             <div class="col">
-                                <img src="<%= item.images[0] %>" class="d-block carousel-sibling img-fluid" alt="...">
+                                <img src="<%= item.images[0] %>" class="d-block img-fluid border border-secondary" alt="...">
                             </div>
                             <% }) %>
                     </div>
@@ -60,12 +60,55 @@
             <% if (isLoggedIn) { %>
                 <div class="col">
                     <div class="d-flex justify-content-end me-2">
-                        <a href="/my-projects"><button type="button" class="btn btn-primary align-self-end"
-                                id="add-button"><img class="me-1" src="/img/add.svg" alt="">Add Project</button>
-                        </a>
+                        <button type="button" class="btn btn-primary" id="add-button" data-bs-toggle="modal"
+                            data-bs-target="#project-modal"><img class="me-1" src="/img/add.svg" alt="">Add
+                            Project</button>
                     </div>
                 </div>
                 <% }%>
+            <!--Project Add Modal -->
+        <div class="modal fade" id="project-modal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="projectModalLabel">Add Project</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="project-info">
+                            <div class="mb-3">
+                                <label for="project-title-field" class="form-label">Project Title</label>
+                                <input type="text" class="form-control" id="project-title-field">
+                            </div>
+                            <div class="mb-3">
+                                <label for="project-desc-field" class="form-label">Project Description*</label>
+                                <textarea class="form-control" id="project-desc-field" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <!--FIle Uploading-->
+                        <div class="file-upload d-flex align-content-center justify-content-center flex-column">
+                            <h1>Uplaod Your Attachment<sub style="font-size: medium; color: gray">(.png,.jpg
+                                    supported)</sub></h1>
+                            <div class="wrapper">
+                                <form action="/" enctype="multipart/form-data" class="img-form">
+                                    <input type="file" name="projectImages" id="project-images" class="file-input"
+                                        multiple required hidden>
+                                    <!-- <button type="submit">Upload</button> -->
+                                    <img src="/img/cloud-upload.svg" alt="">
+                                    <p>Browse File to Upload</p>
+                                </form>
+                            </div>
+                            <section class="upload-area"></section>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="uploadProject()">Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
                     <!-- <hr class="hr-project mt-2"> -->
         </div>
         <!-- Project Desc Modal -->
